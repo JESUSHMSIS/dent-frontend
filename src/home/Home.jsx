@@ -1,6 +1,6 @@
 import "./Home.css"
 import "font-awesome/css/font-awesome.min.css";
-import slider_one from "../Pages/images/slide_one.png";
+import slider_one from "../home/images/slide_one.png";
 import { HashLink } from "react-router-hash-link"
 
 const Home = () => {

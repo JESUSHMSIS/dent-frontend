@@ -1,9 +1,9 @@
 // import React from 'react';
 import { HashLink } from 'react-router-hash-link';
-import about_long_des_data from '../Pages/PagesData/AboutData';
+import about_long_des_data from '../home/PagesData/AboutData';
 import './LowerFooter.css';
-import footer_01 from '../Pages/images/footer_01.jpg';
-import footer_02 from '../Pages/images/footer_01.jpg';
+import footer_01 from '../home/images/footer_01.jpg';
+import footer_02 from '../home/images/footer_01.jpg';
 
 function LowerFooter() {
   const contact_recent_data = [
