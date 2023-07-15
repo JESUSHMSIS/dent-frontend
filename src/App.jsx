@@ -15,13 +15,14 @@ function App() {
 
   return (
     <>
-      <Navbar />
+      
       <Routes>
         <Route 
         exact
         path="/" 
         element={
           <>
+            <Navbar />
             <Home />
             <About />
             <Services /> 
