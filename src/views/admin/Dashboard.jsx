@@ -52,7 +52,8 @@ class Dashboard extends Component {
                 <span className="title">Dashboard</span>
               </a>
             </li>
-            <li>
+            <li className={hoveredItem === 2 ? 'hovered' : ''}
+              onMouseOver={() => this.handleMouseOver(2)}>
                     <a href="#">
                         <span className="icon">
                             <ion-icon name="people-outline"></ion-icon>
@@ -61,7 +62,8 @@ class Dashboard extends Component {
                     </a>
                 </li>
 
-                <li>
+                <li  className={hoveredItem === 3 ? 'hovered' : ''}
+              onMouseOver={() => this.handleMouseOver(3)}>
                     <a href="#">
                         <span className="icon">
                             <ion-icon name="chatbubble-outline"></ion-icon>
@@ -70,7 +72,8 @@ class Dashboard extends Component {
                     </a>
                 </li>
 
-                <li>
+                <li  className={hoveredItem === 4 ? 'hovered' : ''}
+              onMouseOver={() => this.handleMouseOver(4)}>
                     <a href="#">
                         <span className="icon">
                             <ion-icon name="help-outline"></ion-icon>
@@ -79,7 +82,8 @@ class Dashboard extends Component {
                     </a>
                 </li>
 
-                <li>
+                <li className={hoveredItem === 5 ? 'hovered' : ''}
+              onMouseOver={() => this.handleMouseOver(5)}>
                     <a href="#">
                         <span className="icon">
                             <ion-icon name="settings-outline"></ion-icon>
@@ -88,7 +92,8 @@ class Dashboard extends Component {
                     </a>
                 </li>
 
-                <li>
+                <li  className={hoveredItem === 6 ? 'hovered' : ''}
+              onMouseOver={() => this.handleMouseOver(6)}>
                     <a href="#">
                         <span className="icon">
                             <ion-icon name="lock-closed-outline"></ion-icon>
@@ -97,7 +102,8 @@ class Dashboard extends Component {
                     </a>
                 </li>
 
-                <li>
+                <li  className={hoveredItem === 7 ? 'hovered' : ''}
+              onMouseOver={() => this.handleMouseOver(7)}>
                     <a href="#">
                         <span className="icon">
                             <ion-icon name="log-out-outline"></ion-icon>
