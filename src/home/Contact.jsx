@@ -47,15 +47,14 @@ const Contact = () => {
 
               <iframe
                 title="gmap_location"
-                class="gmap_iframe"
+                className="gmap_iframe"
                 width="100%"
-                frameborder="0"
+                frameBorder="0"
                 scrolling="no"
-                marginheight="0"
-                marginwidth="0"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1351.329066057928!2d73.03084553864231!3d18.97784631919385!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c3d1c70aaf85%3A0x28a4cd68182e4f7e!2sOm%20Dental%20Clinic!5e1!3m2!1sen!2sin!4v1686294084196!5m2!1sen!2sin"
-              ></iframe>
-            </div>
+                marginHeight="0"
+                marginWidth="0"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d478.1398229503068!2d-68.08661876640437!3d-16.520109924566754!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x915f21386f10e489%3A0x8f4d935f3a5ea5d4!2sPrado!5e0!3m2!1ses!2sbo!4v1689445176077!5m2!1ses!2sbo"
+              ></iframe>            </div>
           </div>
           <div className="basic_contact_user_form">
             <div className="clinic_time_table">
@@ -76,7 +75,7 @@ const Contact = () => {
             <div className="d_and_c">
               <div className="direction_to_clinic">
                 <a
-                  href="https://www.google.com/maps?ll=18.978293,73.030934&z=14&t=m&hl=en&gl=US&mapclient=embed&cid=2928691504663646078"
+                  href="https://goo.gl/maps/micYX7HYW2AiFwyx8"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
