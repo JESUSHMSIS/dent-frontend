@@ -5,8 +5,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import Logo from '../assets/logo.png';
 import Cookies from 'universal-cookie';
 import './Login.css';
+
 // import { useHistory } from 'react-router-dom';
 const cookies = new Cookies();
+
 const Login = () => {
   const [userName, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -23,7 +25,7 @@ const Login = () => {
 
     try {
       const response = await axios.post(
-        'http://localhost:8080/api/auth/login',
+        'http://localhost:8080/api/auth',
         {
           userName,
           password
@@ -40,7 +42,7 @@ const Login = () => {
       cookies.set('token', response.data.token, { path: '/' });
 
       // Redirigir al usuario al dashboard
-      window.location.href = '/dashboard';
+      window.location.href = '/user';
       // Redirigir al usuario a otra página, por ejemplo:
       // history.push('/dashboard');
     } catch (error) {

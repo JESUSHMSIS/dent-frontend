@@ -39,7 +39,7 @@ const Navbar = () => {
             </HashLink>
           </div>
           <div className="MenuItems">
-            <HashLink to="/login_user" onClick={closeMobileMenu}>
+            <HashLink to="/home/login" onClick={closeMobileMenu}>
               Login
             </HashLink>
           </div>
@@ -49,7 +49,7 @@ const Navbar = () => {
             </HashLink>
           </div>
           <div className="MenuItems" id="Appointment_menu">
-            <HashLink to="/dental-clinic/slot" onClick={closeMobileMenu}>
+            <HashLink to="/home/dental-clinic/slot" onClick={closeMobileMenu}>
               Appointment
             </HashLink>
           </div>
