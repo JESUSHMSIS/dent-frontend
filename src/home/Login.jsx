@@ -5,12 +5,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import Logo from '../assets/logo.png';
 import Cookies from 'universal-cookie';
 import './Login.css';
-// import { useHistory } from 'react-router-dom';
+
 const cookies = new Cookies();
+
 const Login = () => {
-  const [userName, setEmail] = useState('');
+  const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
-  // const history = useHistory();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -45,10 +45,14 @@ const Login = () => {
       // history.push('/dashboard');
     } catch (error) {
       // Manejar errores en la solicitud
-      console.error(error);
-
-      // Mostrar ventana emergente de error
-      toast.error('Usuario o contraseña incorrectos');
+      if (error.response && error.response.status === 401) {
+        // Si el servidor respondió con un error 401 (Unauthorized)
+        toast.error('Usuario o contraseña incorrectos');
+      } else {
+        // Otros errores de solicitud
+        console.error(error);
+        toast.error('Ha ocurrido un error en el servidor');
+      }
     }
   };
 
@@ -71,7 +75,7 @@ const Login = () => {
               placeholder="Enter your user name"
               name="email"
               value={userName}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => setUserName(e.target.value)}
             />
             <input
               type="password"
@@ -87,7 +91,7 @@ const Login = () => {
           </form>
         </div>
       </div>
-      <ToastContainer className="custom-toast-container"/>
+      <ToastContainer className="custom-toast-container" />
     </>
   );
 };

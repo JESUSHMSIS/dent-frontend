@@ -10,6 +10,7 @@ import './App.css'
 import {Routes , Route} from "react-router-dom"
 import Login from './home/Login'
 import Dashboard from './views/admin/Dashboard'
+import RegistrationForm from './views/admin/RegistrationForm'
 
 
 function App() {
@@ -35,12 +36,8 @@ function App() {
         <Route exact path="/dental-clinic/slot" element={<BookingHours />} />
       </Routes>
      <Routes>
-        <Route exact path="/dashboard" element={<>
-          
-          { <Dashboard />}
-          
-        </>} 
-        />
+        <Route exact path="/dashboard" element={<Dashboard />} />
+        <Route exact path="/add-user" element={<RegistrationForm />} />
     </Routes>
 
     </>

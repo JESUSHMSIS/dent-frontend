@@ -467,3 +467,16 @@ body {
     left: initial;
   }
 }
+
+.buttons{
+  margin: 6px;
+  cursor: pointer;
+}
+
+.buttons.trash{
+  color: red;
+}
+
+.buttons.edit{
+  color: blue;
+}

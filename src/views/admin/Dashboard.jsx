@@ -1,29 +1,45 @@
-import  { Component } from 'react';
+import axios from 'axios';
+import { useState , useEffect} from 'react';
 import "./Dashboard.css";
+import Cookies from 'universal-cookie';
+import {Link} from 'react-router-dom';
+const cookies = new Cookies();
+const Dashboard = () =>{
 
-class Dashboard extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      hoveredItem: null,
-      isActive: false,
-    };
-  }
+  const [users, setUsers] = useState([]);
+  const [hoveredItem, setHoveredItem] = useState(null);
+  const [isActive, setIsActive] = useState(false);
 
-  handleMouseOver = (index) => {
-    this.setState({ hoveredItem: index });
+
+  useEffect(() => {
+      axios.get('http://localhost:8080/api/user', {
+        headers: {
+          Authorization: `Bearer ${cookies.get('token')}`
+        }
+      }).then((response) => {
+        if (response.data.ok) {
+          setUsers(response.data.usuarios);
+          console.log(response.data.usuarios);
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    }, []);
+    
+
+
+  const handleMouseOver = (index) => {
+    setHoveredItem(index);
   };
 
-  handleToggleClick = () => {
-    this.setState((prevState) => ({ isActive: !prevState.isActive }));
+  const handleToggleClick = () => {
+    setIsActive((prevState) => !prevState);
   };
 
-  cerrarSesion = () => {
-    window.location.href = './login_user';
-  };
-
-  render() {
-    const { hoveredItem, isActive } = this.state;
+  // const cerrarSesion = () => {
+  //   window.location.href = './login_user';
+  // };
 
     return (
       <div className={`container${isActive ? ' active' : ''}`}>
@@ -43,7 +59,7 @@ class Dashboard extends Component {
 
             <li
               className={hoveredItem === 1 ? 'hovered' : ''}
-              onMouseOver={() => this.handleMouseOver(1)}
+              onMouseOver={() =>handleMouseOver(1)}
             >
               <a href="#">
                 <span className="icon">
@@ -53,7 +69,7 @@ class Dashboard extends Component {
               </a>
             </li>
             <li className={hoveredItem === 2 ? 'hovered' : ''}
-              onMouseOver={() => this.handleMouseOver(2)}>
+              onMouseOver={() => handleMouseOver(2)}>
                     <a href="#">
                         <span className="icon">
                             <ion-icon name="people-outline"></ion-icon>
@@ -63,7 +79,7 @@ class Dashboard extends Component {
                 </li>
 
                 <li  className={hoveredItem === 3 ? 'hovered' : ''}
-              onMouseOver={() => this.handleMouseOver(3)}>
+              onMouseOver={() => handleMouseOver(3)}>
                     <a href="#">
                         <span className="icon">
                             <ion-icon name="chatbubble-outline"></ion-icon>
@@ -73,7 +89,7 @@ class Dashboard extends Component {
                 </li>
 
                 <li  className={hoveredItem === 4 ? 'hovered' : ''}
-              onMouseOver={() => this.handleMouseOver(4)}>
+              onMouseOver={() => handleMouseOver(4)}>
                     <a href="#">
                         <span className="icon">
                             <ion-icon name="help-outline"></ion-icon>
@@ -83,7 +99,7 @@ class Dashboard extends Component {
                 </li>
 
                 <li className={hoveredItem === 5 ? 'hovered' : ''}
-              onMouseOver={() => this.handleMouseOver(5)}>
+              onMouseOver={() =>handleMouseOver(5)}>
                     <a href="#">
                         <span className="icon">
                             <ion-icon name="settings-outline"></ion-icon>
@@ -93,7 +109,7 @@ class Dashboard extends Component {
                 </li>
 
                 <li  className={hoveredItem === 6 ? 'hovered' : ''}
-              onMouseOver={() => this.handleMouseOver(6)}>
+              onMouseOver={() => handleMouseOver(6)}>
                     <a href="#">
                         <span className="icon">
                             <ion-icon name="lock-closed-outline"></ion-icon>
@@ -103,7 +119,7 @@ class Dashboard extends Component {
                 </li>
 
                 <li  className={hoveredItem === 7 ? 'hovered' : ''}
-              onMouseOver={() => this.handleMouseOver(7)}>
+              onMouseOver={() =>handleMouseOver(7)}>
                     <a href="#">
                         <span className="icon">
                             <ion-icon name="log-out-outline"></ion-icon>
@@ -117,7 +133,7 @@ class Dashboard extends Component {
         {/* <!-- ========================= Main ==================== --> */}
         <div className={`main${isActive ? ' active' : ''}`}>
           <div className="topbar">
-            <div className="toggle" onClick={this.handleToggleClick}>
+            <div className="toggle" onClick={handleToggleClick}>
               <ion-icon name="menu-outline"></ion-icon>
             </div>
 
@@ -129,222 +145,57 @@ class Dashboard extends Component {
             </div>
 
             <div className="user">
-              <img src="assets/imgs/customer01.jpg" alt="" />
+              
             </div>
-          </div>
-
-          {/* <!-- ======================= Cards ================== --> */}
-          <div className="cardBox">
-            {/* Contenido de las tarjetas aquí */}
-            <div className="card">
-                    <div>
-                        <div className="numbers">1,504</div>
-                        <div className="cardName">Daily Views</div>
-                    </div>
-
-                    <div className="iconBx">
-                        <ion-icon name="eye-outline"></ion-icon>
-                    </div>
-                </div>
-
-                <div className="card">
-                    <div>
-                        <div className="numbers">80</div>
-                        <div className="cardName">Sales</div>
-                    </div>
-
-                    <div className="iconBx">
-                        <ion-icon name="cart-outline"></ion-icon>
-                    </div>
-                </div>
-
-                <div className="card">
-                    <div>
-                        <div className="numbers">284</div>
-                        <div className="cardName">Comments</div>
-                    </div>
-
-                    <div className="iconBx">
-                        <ion-icon name="chatbubbles-outline"></ion-icon>
-                    </div>
-                </div>
-
-                <div className="card">
-                    <div>
-                        <div className="numbers">$7,842</div>
-                        <div className="cardName">Earning</div>
-                    </div>
-
-                    <div className="iconBx">
-                        <ion-icon name="cash-outline"></ion-icon>
-                    </div>
-                </div>
           </div>
 
           {/* <!-- ================ Order Details List ================= --> */}
           <div className="details">
-            <div className="recentOrders">
+                     
+             <div className="recentOrders">
               <div className="cardHeader">
-                <h2>Recent Orders</h2>
-                <a href="#" className="btn">View All</a>
+                <h2>Lista de Usuarios</h2>
+                <Link to={"/add-user"} className="btn">
+                  Añadir usuario
+                </Link>
               </div>
 
               <table>
-                <thead>
-                  <tr>
-                    <td>Name</td>
-                    <td>Price</td>
-                    <td>Payment</td>
-                    <td>Status</td>
-                  </tr>
-                </thead>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th>Email</th>
+      <th>Acción</th>
+    </tr>
+  </thead>
+  <tbody>
+    {users.length > 0 ? (
+      users.map((user,index) => (
+        <tr key={index}>
+          <td>{user.name}</td>
+          <td>{user.lastName}</td>
+          <td>{user.email}</td>
+          <td >
+            <button className='buttons edit'><ion-icon name="create-outline"></ion-icon></button>
+            <button className='buttons trash'><ion-icon name="trash-outline"></ion-icon></button>
+          </td>
+        </tr>
+      ))
+    ) : (
+      <tr>
+        <td colSpan="4">No hay usuarios</td>
+      </tr>
+    )}
+  </tbody>
+</table>
 
-                <tbody>
-                  {/* Contenido de las filas de datos aquí */}
-                  <tr>
-                                <td>Star Refrigerator</td>
-                                <td>$1200</td>
-                                <td>Paid</td>
-                                <td><span className="status delivered">Delivered</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Dell Laptop</td>
-                                <td>$110</td>
-                                <td>Due</td>
-                                <td><span className="status pending">Pending</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Apple Watch</td>
-                                <td>$1200</td>
-                                <td>Paid</td>
-                                <td><span className="status return">Return</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Addidas Shoes</td>
-                                <td>$620</td>
-                                <td>Due</td>
-                                <td><span className="status inProgress">In Progress</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Star Refrigerator</td>
-                                <td>$1200</td>
-                                <td>Paid</td>
-                                <td><span className="status delivered">Delivered</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Dell Laptop</td>
-                                <td>$110</td>
-                                <td>Due</td>
-                                <td><span className="status pending">Pending</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Apple Watch</td>
-                                <td>$1200</td>
-                                <td>Paid</td>
-                                <td><span className="status return">Return</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Addidas Shoes</td>
-                                <td>$620</td>
-                                <td>Due</td>
-                                <td><span className="status inProgress">In Progress</span></td>
-                            </tr>
-                </tbody>
-              </table>
-            </div>
-
-            {/* <!-- ================= New Customers ================ --> */}
-            <div className="recentCustomers">
-              <div className="cardHeader">
-                <h2>Recent Customers</h2>
-              </div>
-
-              <table>
-              <tr>
-                            <td width="60px">
-                                <div className="imgBx"><img src="assets/imgs/customer02.jpg" alt=""/></div>
-                            </td>
-                            <td>
-                                <h4>David <br/> <span>Italy</span></h4>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td width="60px">
-                                <div className="imgBx"><img src="assets/imgs/customer01.jpg" alt=""/></div>
-                            </td>
-                            <td>
-                                <h4>Amit <br/> <span>India</span></h4>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td width="60px">
-                                <div className="imgBx"><img src="assets/imgs/customer02.jpg" alt=""/></div>
-                            </td>
-                            <td>
-                                <h4>David <br/> <span>Italy</span></h4>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td width="60px">
-                                <div className="imgBx"><img src="assets/imgs/customer01.jpg" alt=""/></div>
-                            </td>
-                            <td>
-                                <h4>Amit <br/> <span>India</span></h4>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td width="60px">
-                                <div className="imgBx"><img src="assets/imgs/customer02.jpg" alt=""/></div>
-                            </td>
-                            <td>
-                                <h4>David <br/> <span>Italy</span></h4>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td width="60px">
-                                <div className="imgBx"><img src="assets/imgs/customer01.jpg" alt=""/></div>
-                            </td>
-                            <td>
-                                <h4>Amit <br/> <span>India</span></h4>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td width="60px">
-                                <div className="imgBx"><img src="assets/imgs/customer01.jpg" alt=""/></div>
-                            </td>
-                            <td>
-                                <h4>David <br/> <span>Italy</span></h4>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td width="60px">
-                                <div className="imgBx"><img src="assets/imgs/customer02.jpg" alt=""/></div>
-                            </td>
-                            <td>
-                                <h4>Amit <br/> <span>India</span></h4>
-                            </td>
-                        </tr>
-              </table>
             </div>
           </div>
         </div>
       </div>
-    );
-  }
-}
+  );
+ }
+
 
 export default Dashboard;
