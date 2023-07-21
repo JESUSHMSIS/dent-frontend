@@ -5,7 +5,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import Logo from '../assets/logo.png';
 import Cookies from 'universal-cookie';
 import './Login.css';
-
 const cookies = new Cookies();
 
 const Login = () => {
@@ -40,7 +39,7 @@ const Login = () => {
       cookies.set('token', response.data.token, { path: '/' });
 
       // Redirigir al usuario al dashboard
-      window.location.href = '/dashboard';
+      window.location.href = '/user/admin';
       // Redirigir al usuario a otra página, por ejemplo:
       // history.push('/dashboard');
     } catch (error) {
@@ -68,7 +67,7 @@ const Login = () => {
           >
             <div className="brand">
               <img src={Logo} alt="logo" />
-              <h1>Om Dental Clinic</h1>
+              <h1>Dental Clinic</h1>
             </div>
             <input
               type="text"
