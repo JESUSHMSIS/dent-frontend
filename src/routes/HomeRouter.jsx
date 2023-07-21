@@ -30,7 +30,6 @@ export const HomeRouter = () => {
             </>
           } 
         /> 
-
         <Route path='/login' element={<Login />}/>
         <Route path="/dental-clinic/slot" element={<BookingHours />} />
       </Routes>

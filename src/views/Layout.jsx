@@ -10,7 +10,7 @@ export const Layout = ({children}) => {
   // Array con la información de los elementos del menú
   const menuItems = [
     { icon: 'settings-outline', title: 'Settings', path : 'otro' },
-    { icon: 'people-outline', title: 'Users', path : 'otro' },
+    { icon: 'people-outline', title: 'Users', path : 'users' },
     { icon: 'people-circle-outline', title: 'Accounts', path : 'accounts' },
     // { icon: 'chatbubble-outline', title: 'Messages', path : 'accounts' },
     // { icon: 'help-outline', title: 'Help', path : 'accounts' },

@@ -9,9 +9,8 @@ import './Login.css';
 const cookies = new Cookies();
 
 const Login = () => {
-  const [userName, setEmail] = useState('');
+  const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
-  // const history = useHistory();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -61,14 +60,14 @@ const Login = () => {
           >
             <div className="brand">
               <img src={Logo} alt="logo" />
-              <h1>Om Dental Clinic</h1>
+              <h1>Dental Clinic</h1>
             </div>
             <input
               type="text"
               placeholder="Enter your user name"
               name="email"
               value={userName}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => setUserName(e.target.value)}
             />
             <input
               type="password"
@@ -84,7 +83,7 @@ const Login = () => {
           </form>
         </div>
       </div>
-      <ToastContainer className="custom-toast-container"/>
+      <ToastContainer className="custom-toast-container" />
     </>
   );
 };

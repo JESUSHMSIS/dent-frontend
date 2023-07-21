@@ -1,10 +1,12 @@
 
-import React from 'react';
 import { Layout } from '../views/Layout';
-import { AccountsView } from '../views/admin/pages/module.users/accounts'
 import { Route, Routes} from "react-router-dom";
 
 import "../styles/Dashboard.css";
+
+
+import { AccountsView } from '../views/admin/pages/module.users/accounts'
+import GetUsers from '../views/admin/pages/module.users/users/GetUsers';
 
 export const AdminRouter = () => {
 
@@ -14,7 +16,7 @@ export const AdminRouter = () => {
         <Routes>
           {/* <Route path='/' element={<Accounts />} /> */}
           <Route path='/accounts' element={<AccountsView />} />
-          <Route path='/otro' element={<div className='cardBox'><h1>OTRO</h1></div>} />
+          <Route path='/users' element={<GetUsers/>} />
         </Routes>
       </Layout>
     </>

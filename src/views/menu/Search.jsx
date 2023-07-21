@@ -1,8 +1,5 @@
 
-
-
-import React, {useState} from 'react';
-
+import {useState} from 'react';
 
 export const Search = ({ children })=>{
 
@@ -25,4 +22,6 @@ export const Search = ({ children })=>{
     </div>
 
   );
-}
+};
+
+export default Search;
