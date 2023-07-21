@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
+import {Link} from 'react-router-dom';
 
 export const Navigation = (props)=>{
 
   
   const [hoveredItem, setHoveredItem] = useState(null);
 
-  const handleMouseOver = (index) => {
+  const handleMouseClick = (index) => {
     setHoveredItem(index);
   };
 
@@ -20,15 +21,15 @@ export const Navigation = (props)=>{
             <li
               key={index}
               className={hoveredItem === index ? 'hovered' : ''}
-              onMouseOver={() => handleMouseOver(index)}
+              onClick={() => handleMouseClick(index)}
             >
               {/* Usar link en ves de a */}
-              <a href="#">
+              <Link to={item.path}>
                 <span className="icon">
                   <ion-icon name={item.icon}></ion-icon>
                 </span>
                 <span className="title">{item.title}</span>
-              </a>
+              </Link>
             </li>
           ))
         }

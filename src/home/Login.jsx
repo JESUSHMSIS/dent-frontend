@@ -6,7 +6,6 @@ import Logo from '../assets/logo.png';
 import Cookies from 'universal-cookie';
 import './Login.css';
 
-// import { useHistory } from 'react-router-dom';
 const cookies = new Cookies();
 
 const Login = () => {
@@ -42,14 +41,10 @@ const Login = () => {
       cookies.set('token', response.data.token, { path: '/' });
 
       // Redirigir al usuario al dashboard
-      window.location.href = '/user';
-      // Redirigir al usuario a otra página, por ejemplo:
-      // history.push('/dashboard');
-    } catch (error) {
-      // Manejar errores en la solicitud
-      console.error(error);
+      window.location.href = '/user/admin';
 
-      // Mostrar ventana emergente de error
+    } catch (error) {
+      console.error(error);
       toast.error('Usuario o contraseña incorrectos');
     }
   };
