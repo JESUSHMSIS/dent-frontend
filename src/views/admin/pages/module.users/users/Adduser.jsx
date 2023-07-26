@@ -26,7 +26,7 @@ const AddUser = ({ onUserAdded, onCloseForm }) => {
   };
 
   const handleAddUser = () => {
-    axios.post('http://localhost:8080/api/user', newUser, {
+    axios.post('http://24.199.82.224:8080/api/user', newUser, {
       headers: {
         Authorization: `Bearer ${cookies.get('token')}`
       }

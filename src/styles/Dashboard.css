@@ -10,9 +10,10 @@
 }
 
 :root {
-  --blue: #2a2185;
-  --white: #fff;
-  --gray: #f5f5f5;
+  --blue: #002240;
+  --fondo: #fff;
+  --nav-item: #002244;
+  --gray: #f0f0f0;
   --black1: #222;
   --black2: #999;
 }
@@ -20,7 +21,7 @@
 body {
   min-height: 100vh;
   overflow-x: hidden;
-  background-color: #2a2185 !important;
+  border-radius: 50px;
 }
 
 .container {
@@ -60,7 +61,7 @@ body {
 
 .navigation ul li:hover,
 .navigation ul li.hovered {
-  background-color: var(--white);
+  background-color: var(--fondo);
 }
 
 .navigation ul li:nth-child(1) {
@@ -73,12 +74,13 @@ body {
   width: 100%;
   display: flex;
   text-decoration: none;
-  color: var(--white);
+  color: #fff;
 }
 
 .navigation ul li:hover a,
 .navigation ul li.hovered a {
-  color: var(--blue);
+  color: var(--nav-item);
+  font-weight: bolder;
 }
 
 .navigation ul li a .icon {
@@ -115,7 +117,7 @@ body {
   height: 50px;
   background-color: transparent;
   border-radius: 50%;
-  box-shadow: 35px 35px 0 10px var(--white);
+  box-shadow: 35px 35px 0 10px var(--fondo);
   pointer-events: none;
 }
 
@@ -129,7 +131,7 @@ body {
   height: 50px;
   background-color: transparent;
   border-radius: 50%;
-  box-shadow: 35px -35px 0 10px var(--white);
+  box-shadow: 35px -35px 0 10px var(--fondo);
   pointer-events: none;
 }
 
@@ -139,7 +141,7 @@ body {
   width: calc(100% - 300px);
   left: 300px;
   min-height: 100vh;
-  background: var(--white);
+  background-color: var(--fondo);
   transition: 0.5s;
 }
 
@@ -196,6 +198,7 @@ body {
 
 @media (max-width: 480px) {
   .navigation {
+    margin-top: 1000px;
     width: 100%;
     left: -300;
     z-index: 1000;

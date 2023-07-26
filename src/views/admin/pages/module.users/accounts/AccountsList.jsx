@@ -2,40 +2,18 @@ import React, {useState, useEffect} from 'react';
 import Modal from 'react-modal';
 import { styleModalUpdateAccount } from '../../../../../styles/StyleModals';
 
-import axios from 'axios';
-import Cookies from 'universal-cookie';
-
-
 import { ModalUpdateAccount } from './ModalUpdateAccount';
+import { useAccountStore } from '../../../../../hooks';
+import { useSelector } from 'react-redux';
 
 export const AccountsList = () => {
   
-  const [accounts, setData] = useState([]);
+  const { getAccounts } = useAccountStore();
+  const { accounts = [] } = useSelector( (state) => state.accounts)
 
   useEffect(() => {
-    fetchAccounts();
+    getAccounts();
   }, []);
-
-  
-  const fetchAccounts = () => {
-    const cookies = new Cookies();
-    const token = cookies.get('token');
-
-    axios.get(
-      'http://localhost:8080/api/account',
-      {
-        headers : {
-          Authorization : `Bearer ${token}`}
-      })
-      .then(response => {
-        console.log(response.data.accounts);
-        setData(response.data.accounts);
-      })
-      .catch(error => {
-        console.error('Error al obtener los datos:', error);
-      });
-  };
-
 
   const [dataAccount, setDataAccount] = useState([]);
 
@@ -47,13 +25,13 @@ export const AccountsList = () => {
   const CloseModalUpdAccount = () => { setModalUpdAccount(false) };
 
   
-  const [modalDelAccount, setModalDelAccount] = useState(false);
-  const OpenModalDelAccount = () => { setModalDelAccount(true) };
-  const CloseModalDelAccount = () => { setModalDelAccount(false) };
+  // const [modalDelAccount, setModalDelAccount] = useState(false);
+  // const OpenModalDelAccount = () => { setModalDelAccount(true) };
+  // const CloseModalDelAccount = () => { setModalDelAccount(false) };
 
   return (
     <>
-      <div className='accounts-content-list'>
+      <div className='view-accounts'>
         <table className='accounts-list'>
           <thead>
             <tr>

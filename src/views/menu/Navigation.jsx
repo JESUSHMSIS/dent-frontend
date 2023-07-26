@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import {Link} from 'react-router-dom';
 
-export const Navigation = (props)=>{
+export const Navigation = ({menuItems})=>{
 
   
   const [hoveredItem, setHoveredItem] = useState(null);
@@ -9,9 +9,6 @@ export const Navigation = (props)=>{
   const handleMouseClick = (index) => {
     setHoveredItem(index);
   };
-
-
-  const {menuItems} = props;
   
   return(
     <div className="navigation">

@@ -1,113 +1,167 @@
 
 
 .content-accounts{
-  padding: 20px;
+  padding: 7px;
+  /* background-color: #040; */
 }
 
-.content-accounts h1{
-  color: #000;
-}
+/* ==============================   Header Accounts ================================= */
 
-
-
-/* ==============================  Accounts List ================================= */
-
-.accounts-content-list{
-  margin: auto;
-  margin-top: 30px;
-  padding: 5px;
-  background-color: #fff;
-  text-align: center;
-  border-radius: 10px;
-  box-shadow: 0px 5px 10px 5px #045;
-  /* background-color: #400; */
-}
-
-.accounts-list{
-  color: #fff;
+.header-accounts{
   width: 100%;
-  background-color: #003434;
-  border-radius: 10px;
-  /* background-color: #080; */
-}
-.accounts-list td:first-child,
-.accounts-list th:first-child{
-  width: 70%;
-}
-.accounts-list td{
   padding: 10px;
-}
-.accounts-list th{
-  padding-top: 15px;
-  padding-bottom: 15px;
-}
-
-.button-update,
-.button-delete{
-  width: 30px;
-  height: 30px;
-  display: inline-block;
-  border: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 70px;
+  border: 2px solid #000;
   border-radius: 10px;
-  color: #fff;
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-  outline: none;
-  transition: 0.3s background-color;
 }
 
-button .icon{ font-size: 17px; }
-
-.button-update{ background-color: #037; }
-.button-delete{ background-color: #400; }
-
-.button-update:hover{ background-color: #06c; }
-.button-delete:hover{ background-color: #800; }
-
-
-/* ======= MODAL UPDATE ACCOUNT ====== */
-.content-close-modal{
-  display: flex;
-  justify-content: right;
+:root{
+  --widget: #024;
+  --btn-text: #fff;
+  --widget-text: #045;
+  --widget-in: #fff;
 }
 
-.content-close-modal button{
-  text-align: center;
-  border: none;
-  outline: none;
-  background-color: #800;
-  color: #fff;
-  padding: 7px 10px;
-  border-radius: 7px;
-  transition: 0.25s;
-}
-
-.content-close-modal button:hover{
-  background-color: #b00;
-  box-shadow: 1px 2px 5px 1px #000;
-}
-
-.content-update{
-  margin-top: 20px;
-  color: #fff;
+.content-search{
+  grid-column: 1 / span 3;
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
+  align-items: center;
+  background-color: var(--widget);
+  padding-left: 20px;
+  border-radius: 10px;
 }
 
-.type-account, .name-user{
-  text-align: center;
-  /* background-color: #400; */
-  max-width: 300px;
+.content-search div:first-child{
+  flex: 0.7;
+}
+
+.content-search input{
+  height: 40px;
+  background-color: var(--widget-in);
+  color: var(--widget-text) !important;
+  font-weight: bolder;
+}
+
+.content-search select{
+  border: none;
+  outline: none;
+  border-radius: 4px;
   min-width: 100px;
+  height: 30px;
+  font-weight: bolder;
+  color: var(--widget-text);
+  text-align: center;
+  background-color: var(--widget-in);
 }
 
-.users{
-  margin-top: 30px;
-  width: 100%;
+.content-search div:nth-child(2){
+  flex: 0.3;
+  text-align: center;
 }
 
-.users table{
+
+.content-create{
+  grid-column: 4;
+}
+
+.content-create div{
+  height: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content-create button{
+  min-width: 135px;
+  border: none;
+  padding: 7px 0px 7px 0px;
+  border-radius: 5px;
+  background-color: var(--widget);
+  color: var(--btn-text);
+  transition: box-shadow 0.2s;
+  font-weight: bolder;
+}
+
+.content-create button:hover{
+  cursor: pointer;
+  box-shadow: 0px 0px 7px 0.1px #000;
+}
+
+/* ================================= View Accounts  ======================================= */
+
+.view-accounts{
+  border: 2px solid #000;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 15px;
+}
+
+.accounts-list{
   width: 100%;
+  color: var(--widget-in);
+  background-color: var(--widget);
+  text-align: center;
+  border-radius: 15px;
+  padding-top: 20px;
+}
+
+.button-update, .button-delete{
+  border: none;
+  color: #fff;
+  padding: 5px;
+  outline: none;
+  border-radius: 5px;
+  transition: 0.2s;
+}
+.button-update{
+  background-color: #012;
+}
+.button-update:hover{
+  cursor: pointer;
+  box-shadow: 0px 0px 7px 3px #000;
+  background-color: #034;
+}
+.button-delete{
+  background-color: #300;
+}
+.button-delete:hover{
+  cursor: pointer;
+  box-shadow: 0px 0px 7px 3px #000;
+  background-color: #500;
+}
+
+td{
+  padding: 20px;
+}
+
+@media (max-width: 600px) {
+  .header-accounts{
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(2, 70px);
+  }
+
+  .content-search{
+    grid-row: 1;
+    grid-column: 1;
+  }
+  .content-create{
+    grid-row: 2;
+    grid-column: 1;
+  }
+}
+
+@media (max-width: 478px){
+  .content-search{
+    padding-left: 0px;
+  }
+  .header-accounts{
+    grid-template-rows: 100px 70px;
+  }
+  .content-search div{
+    min-width: 200px;
+  }
 }

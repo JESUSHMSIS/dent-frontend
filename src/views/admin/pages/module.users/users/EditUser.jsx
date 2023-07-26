@@ -21,7 +21,7 @@ const EditUser = ({ editUser, onUserUpdated, onCloseForm }) => {
 
   const handleUpdateUser = () => {
     axios
-      .put(`http://localhost:8080/api/user?id=${user.id}`, user, {
+      .put(`http://24.199.82.224/:8080/api/user?id=${user.id}`, user, {
         headers: {
           Authorization: `Bearer ${cookies.get('token')}`,
         },

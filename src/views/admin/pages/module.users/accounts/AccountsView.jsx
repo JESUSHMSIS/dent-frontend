@@ -1,5 +1,4 @@
-import React, {useState} from 'react';
-import Modal from 'react-modal';
+import React from 'react';
 
 import '../../../../../styles/admin/accounts.css';
 
@@ -10,11 +9,9 @@ export const AccountsView = () => {
 
 
   return (
-    <>
-      <div className='content-accounts'>
-        <AccountsHead />
-        <AccountsList />
-      </div>
-    </>
+    <div className='content-accounts'>
+      <AccountsHead />
+      <AccountsList />
+    </div>
   );
 }

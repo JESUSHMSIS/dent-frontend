@@ -47,7 +47,7 @@ const GetUsers = () => {
   };
 
   useEffect(() => {
-    axios.get('http://localhost:8080/api/user', {
+    axios.get('http://24.199.82.224:8080/api/user', {
       headers: {
         Authorization: `Bearer ${cookies.get('token')}`
       }
@@ -65,7 +65,7 @@ const GetUsers = () => {
     const confirmed = window.confirm("¿Estás seguro de eliminar este usuario?");
     if (confirmed) {
       axios
-        .delete(`http://localhost:8080/api/user?id=${userId}`, {
+        .delete(`http://24.199.82.224:8080/api/user?id=${userId}`, {
           headers: {
             Authorization: `Bearer ${cookies.get("token")}`,
           },
