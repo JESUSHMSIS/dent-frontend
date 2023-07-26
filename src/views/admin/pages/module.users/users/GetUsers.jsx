@@ -1,86 +1,30 @@
-import axios from 'axios';
-import { useState, useEffect } from 'react';
-import Cookies from 'universal-cookie';
-import AddUser from "./AddUser";
-import EditUser from "./EditUser";
-import { Button } from 'react-bootstrap';
+import { useEffect, useState } from 'react';
+import { useUserStore } from '../../../../../hooks';
+import { useSelector } from 'react-redux';
 import Modal from 'react-modal';
+import AddUser from './AddUser';
 
 import '../../../../../styles/admin/users.css';
 
-const cookies = new Cookies();
-
 const GetUsers = () => {
-  const [users, setUsers] = useState([]);
-  const [showAddUserForm, setShowAddUserForm] = useState(false);
-  const [showEditUserForm, setShowEditUserForm] = useState(false);
-  const [selectedUser, setSelectedUser] = useState(null);
+  const { getUser } = useUserStore();
+  const { users = [] } = useSelector((state) => state.users);
 
-  const handleUserAdded = (newUser) => {
-    // Agregar el nuevo usuario a la lista actualizada de usuarios sin recargar la página
-    setUsers((prevUsers) => [...prevUsers, newUser]);
-  };
-
-  const handleAddUserClick = () => {
-    setShowAddUserForm(true);
-  };
-
-  const handleCloseAddUserForm = () => {
-    setShowAddUserForm(false);
-  };
-
-  const handleUserUpdated = (updatedUser) => {
-    // Actualizar la lista de usuarios con el usuario actualizado sin recargar la página
-    setUsers((prevUsers) =>
-      prevUsers.map((user) => (user.id === updatedUser.id ? updatedUser : user))
-    );
-  };
-
-  const handleEditUserClick = (user) => {
-    setSelectedUser(user);
-    setShowEditUserForm(true);
-  };
-
-  const handleCloseEditUserForm = () => {
-    setSelectedUser(null);
-    setShowEditUserForm(false);
-  };
-
-  useEffect(() => {
-    axios.get('http://24.199.82.224:8080/api/user', {
-      headers: {
-        Authorization: `Bearer ${cookies.get('token')}`
-      }
-    }).then((response) => {
-      if (response.data.ok) {
-        setUsers(response.data.usuarios);
-        console.log(response.data.usuarios);
-      }
-    }).catch((error) => {
-      console.error(error);
-    });
+   useEffect(() => {
+    getUser();
   }, []);
 
-  const handleDeleteUser = (userId) => {
-    const confirmed = window.confirm("¿Estás seguro de eliminar este usuario?");
-    if (confirmed) {
-      axios
-        .delete(`http://24.199.82.224:8080/api/user?id=${userId}`, {
-          headers: {
-            Authorization: `Bearer ${cookies.get("token")}`,
-          },
-        })
-        .then((response) => {
-          if (response.data.ok) {
-            // Filtrar el usuario eliminado de la lista de usuarios sin recargar la página
-            setUsers((prevUsers) => prevUsers.filter((user) => user.id !== userId));
-          }
-        })
-        .catch((error) => {
-          console.error(error);
-          alert("Hubo un error al eliminar el usuario. Por favor, inténtelo de nuevo más tarde.");
-        });
-    }
+  // Estado para controlar la apertura/cierre del modal
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  // Función para abrir el modal
+  const openModal = () => {
+    setModalIsOpen(true);
+  };
+
+  // Función para cerrar el modal
+  const closeModal = () => {
+    setModalIsOpen(false);
   };
 
   return (
@@ -88,35 +32,10 @@ const GetUsers = () => {
       <div className="recentOrders">
         <div className="cardHeader">
           <h2>Lista de Usuarios</h2>
-          <Button onClick={handleAddUserClick} className="btn">
+          <button className="btn" onClick={openModal}>
             Añadir usuario
-          </Button>
+          </button>
         </div>
-        <Modal
-          isOpen={showAddUserForm}
-          onRequestClose={handleCloseAddUserForm}
-          style={{ content: { width: '450px', left: '50%', transform: 'translateX(-50%)' },
-                  overlay: {zIndex: 100000}}
-          }
-        >
-          <AddUser onUserAdded={handleUserAdded} onCloseForm={handleCloseAddUserForm} />
-        </Modal>
-        <Modal
-          isOpen={showEditUserForm}
-          onRequestClose={handleCloseEditUserForm}
-          style={{ content: { width: '450px', left: '50%', transform: 'translateX(-50%)' } ,
-                  overlay: {zIndex: 10000}}
-          }
-        >
-          {selectedUser && (
-            <EditUser
-              editUser={selectedUser}
-              onUserUpdated={handleUserUpdated}
-              onCloseForm={handleCloseEditUserForm}
-            />
-          )}
-        </Modal>
-
         <table>
           <thead>
             <tr>
@@ -134,10 +53,10 @@ const GetUsers = () => {
                   <td>{user.lastName}</td>
                   <td>{user.email}</td>
                   <td>
-                    <button className='buttons edit' onClick={() => handleEditUserClick(user)}>
+                    <button className='buttons edit'>
                       <ion-icon name="create-outline"></ion-icon>
                     </button>
-                    <button className='buttons trash' onClick={() => handleDeleteUser(user.id)}>
+                    <button className='buttons trash'>
                       <ion-icon name="trash-outline"></ion-icon>
                     </button>
                   </td>
@@ -151,8 +70,31 @@ const GetUsers = () => {
           </tbody>
         </table>
       </div>
+
+      {/* Modal para agregar usuario */}
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        contentLabel="Agregar Usuario"
+        ariaHideApp={false}
+        style={{
+          overlay: {
+            zIndex: 9999,
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+          },
+          content: {
+            width: '400px',
+            margin: 'auto',
+            marginTop: '100px',
+            zIndex: 10000,
+          },
+        }}
+      >
+        {/* Pasamos closeModal como prop al componente AddUser */}
+        <AddUser onCloseForm={closeModal} />
+      </Modal>
     </div>
   );
-}
+};
 
 export default GetUsers;

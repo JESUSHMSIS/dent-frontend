@@ -8,10 +8,11 @@ const cafeApi = axios.create({
   baseURL: `${VITE_API_URL}/api`
 });
 
+// Todo: configurar interceptores
 cafeApi.interceptors.request.use(config => {
 
-  const cookies = new Cookies();
-  const token = cookies.get('token');
+    const cookies = new Cookies();
+    const token = cookies.get('token');
 
   config.headers = {
     ...config.headers,
@@ -23,3 +24,6 @@ cafeApi.interceptors.request.use(config => {
 
 
 export default cafeApi;
+
+
+

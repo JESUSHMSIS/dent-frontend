@@ -1,65 +1,43 @@
-import { useState } from 'react';
+import  { useState } from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
-import Cookies from 'universal-cookie';
-// import Modal from 'react-modal';
+import { useUserStore } from '../../../../../hooks';
 
-const cookies = new Cookies();
-
-const AddUser = ({ onUserAdded, onCloseForm }) => {
+const AddUser = ({ onCloseForm }) => {
+  const { postUser } = useUserStore();
   const [newUser, setNewUser] = useState({
-    name: "",
-    lastName: "",
-    email: "",
-    phoneNumber: "",
-    CI: "",
-    age: ""
+    name: '',
+    lastName: '',
+    email: '',
+    phoneNumber: '',
+    CI: '',
+    age: '',
   });
-  
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setNewUser({
       ...newUser,
-      [name]: value
+      [name]: value,
     });
   };
 
-  const handleAddUser = () => {
-    axios.post('http://24.199.82.224:8080/api/user', newUser, {
-      headers: {
-        Authorization: `Bearer ${cookies.get('token')}`
-      }
-    }).then((response) => {
-      if (response.data.ok) {
-        onUserAdded(newUser);
-        setNewUser({
-          name: "",
-          lastName: "",
-          email: "",
-          phoneNumber: "",
-          CI: "",
-          age: ""
-        });
-        // Cerrar el formulario después de agregar un usuario
-        
-        onCloseForm();
-        window.location.reload()
-
-      }
-    }).catch((error) => {
-      console.error(error);
-      alert('Hubo un error al agregar el usuario. Por favor, inténtelo de nuevo más tarde.');
+  const handleAddUser = async () => {
+    await postUser(newUser);
+    setNewUser({
+      name: '',
+      lastName: '',
+      email: '',
+      phoneNumber: '',
+      CI: '',
+      age: '',
     });
+    onCloseForm(); // Cerrar el formulario después de agregar un usuario
   };
-    return (
-        <div style={{textAlign:'center'}}>
-          
-           {typeof onCloseForm === 'function' ? (
-          <>
-            <h2 style={{marginBottom:'20px'}}>Añadir usuarios</h2>
 
-            <input
+  return (
+    <div style={{ textAlign: 'center' }}>
+      <h2 style={{ marginBottom: '20px' }}>Añadir usuarios</h2>
+      <input
                 type="text"
                 name="name"
                 value={newUser.name}
@@ -101,18 +79,37 @@ const AddUser = ({ onUserAdded, onCloseForm }) => {
                 onChange={handleInputChange}
                 placeholder="Edad"
             />
-            <button onClick={handleAddUser} style={{marginTop:'20px',padding:'10px 25px',backgroundColor:'#999', cursor:'pointer',fontSize:'15px'}}>Añadir usuario</button>
-            <button onClick={onCloseForm} style={{ position: 'absolute', top: '10px', right: '10px', background: 'transparent', border: 'none', cursor: 'pointer' , fontSize:'40px'}}> <ion-icon name="close-outline" ></ion-icon></button>
-            </>
-            ) : null}
-        </div>
-    );
+      {/* Agregar los demás campos del formulario */}
+      <button
+        onClick={handleAddUser}
+        style={{
+          marginTop: '20px',
+          padding: '10px 25px',
+          backgroundColor: '#999',
+          cursor: 'pointer',
+          fontSize: '15px',
+        }}
+      >
+        Añadir usuario
+      </button>
+      <button
+        onClick={onCloseForm} // Usamos onCloseForm para cerrar el modal
+        style={{
+          marginTop: '20px',
+          padding: '10px 25px',
+          backgroundColor: 'red',
+          cursor: 'pointer',
+          fontSize: '15px',
+        }}
+      >
+        Cancelar
+      </button>
+    </div>
+  );
 };
 
-// Declara las propTypes para el componente
 AddUser.propTypes = {
-    onUserAdded: PropTypes.func.isRequired, // Espera una función llamada onUserAdded
-    onCloseForm: PropTypes.func
+  onCloseForm: PropTypes.func.isRequired,
 };
 
 export default AddUser;
