@@ -10,7 +10,7 @@ const Services = () => {
             <span>
               <i className="fa-solid fa-angles-right"></i>
             </span>
-            Our Treatments
+            Nuestros Tratamientos
           </h2>
           <div className="service_info_container">
             {ServiceData.map((e, index) => (
