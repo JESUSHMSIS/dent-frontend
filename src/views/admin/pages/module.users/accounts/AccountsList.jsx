@@ -31,7 +31,6 @@ export const AccountsList = () => {
 
   return (
     <>
-      <div className='view-accounts'>
         <table className='accounts-list'>
           <thead>
             <tr>
@@ -68,7 +67,6 @@ export const AccountsList = () => {
             }
           </tbody>
         </table>
-      </div>
 
       
       <Modal

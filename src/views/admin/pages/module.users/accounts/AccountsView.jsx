@@ -11,7 +11,14 @@ export const AccountsView = () => {
   return (
     <div className='content-accounts'>
       <AccountsHead />
-      <AccountsList />
+      {/* <AccountsList /> */}
+      <div className='view-accounts'>
+        <div className='content-list-accounts'>
+          <AccountsList />
+        </div>
+        <div className='content-type-account'></div>
+        <div className='content-inf-account'></div>
+      </div>
     </div>
   );
 }
