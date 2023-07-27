@@ -3,11 +3,12 @@ import { useUserStore } from '../../../../../hooks';
 import { useSelector } from 'react-redux';
 import Modal from 'react-modal';
 import AddUser from './AddUser';
-
+import DeleteUser from './DeleteUsers';
+import { styleModalUpdateAccount } from '../../../../../styles/StyleModals';
 import '../../../../../styles/admin/users.css';
 
 const GetUsers = () => {
-  const { getUser } = useUserStore();
+  const { getUser,deleteUser } = useUserStore();
   const { users = [] } = useSelector((state) => state.users);
 
    useEffect(() => {
@@ -16,7 +17,27 @@ const GetUsers = () => {
 
   // Estado para controlar la apertura/cierre del modal
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [userIdToDelete, setUserIdToDelete] = useState(null);
 
+
+   // Function to open the delete confirmation modal
+   const openDeleteModal = (userId) => {
+    setUserIdToDelete(userId);
+  };
+
+  // Function to close the delete confirmation modal
+  const closeDeleteModal = () => {
+    setUserIdToDelete(null);
+  };
+
+  // Function to handle user deletion
+  const handleDeleteUser = async () => {
+    if (userIdToDelete) {
+      await deleteUser(userIdToDelete);
+      closeDeleteModal();
+    }
+  };
+  
   // Función para abrir el modal
   const openModal = () => {
     setModalIsOpen(true);
@@ -32,11 +53,14 @@ const GetUsers = () => {
       <div className="recentOrders">
         <div className="cardHeader">
           <h2>Lista de Usuarios</h2>
-          <button className="btn" onClick={openModal}>
+          <div className='content-create' style={{marginTop:'10px'}}>
+            <button className="btn" onClick={openModal}>
             Añadir usuario
-          </button>
+            </button>
+          </div>
         </div>
-        <table>
+      <div className='view-accounts'>
+      <table className='accounts-list'>
           <thead>
             <tr>
               <th>Nombre</th>
@@ -53,10 +77,10 @@ const GetUsers = () => {
                   <td>{user.lastName}</td>
                   <td>{user.email}</td>
                   <td>
-                    <button className='buttons edit'>
+                    <button className='button-update' style={{marginRight:'15px'}}>
                       <ion-icon name="create-outline"></ion-icon>
                     </button>
-                    <button className='buttons trash'>
+                    <button className='button-delete' onClick={() => openDeleteModal(user.id)}>
                       <ion-icon name="trash-outline"></ion-icon>
                     </button>
                   </td>
@@ -69,6 +93,8 @@ const GetUsers = () => {
             )}
           </tbody>
         </table>
+      </div>
+        
       </div>
 
       {/* Modal para agregar usuario */}
@@ -92,6 +118,16 @@ const GetUsers = () => {
       >
         {/* Pasamos closeModal como prop al componente AddUser */}
         <AddUser onCloseForm={closeModal} />
+      </Modal>
+      <Modal
+        isOpen={!!userIdToDelete} // Show modal only if there is a user ID to delete
+        onRequestClose={closeDeleteModal}
+        contentLabel="Confirmar Eliminación de Usuario"
+        ariaHideApp={false}
+        style={styleModalUpdateAccount}
+      >
+        {/* Pass handleDeleteUser and closeDeleteModal as props to the DeleteUser component */}
+        <DeleteUser onDelete={handleDeleteUser} onCancel={closeDeleteModal} />
       </Modal>
     </div>
   );
