@@ -6,10 +6,11 @@ import Logo from '../assets/logo.png';
 import './BookingHours.css';
 // import { useNavigate } from 'react-router-dom';
 // import Spinner from '../Components/Spinner';
-
+import Navbar from './Navbar';
 const BookingHours = () => {
   return (
     <>
+      <Navbar />
       <div className="booking_section_container">
         <div className="bsc_lower">
           <form method="POST">
@@ -19,13 +20,13 @@ const BookingHours = () => {
                   <div className="form_for_booking">
                     <div className="brand">
                       <img src={Logo} alt="logo" />
-                      <h1>Om Dental Clinic</h1>
+                      <h1>OMs Consultorio Dental</h1>
                     </div>
                     <div className="in__container">
-                      <label>Choose Date</label>
+                      <label>Elija La Fecha</label>
                       <input
                         type="date"
-                        placeholder="Select Date"
+                        placeholder="Selecciona la fecha"
                         name="date"
                         style={{ color: 'White' }}
                         onChange={(event) => {
@@ -37,30 +38,30 @@ const BookingHours = () => {
 
                     </div>
                     <div className="in__container">
-                      <label>Your Name</label>
+                      <label>Ingrese su nombre</label>
                       <input
                         type="text"
-                        placeholder="Enter your name"
+                        placeholder="Ingresa su nombre"
                         name="name"
                         min="3"
                         required
                       />
                     </div>
                     <div className="in__container">
-                      <label>Email Id</label>
+                      <label>Ingrese su email</label>
                       <input
                         type="email"
-                        placeholder="Enter your Email"
+                        placeholder="Ingresa su email"
                         name="email"
                         min="3"
                         required
                       />
                     </div>
                     <div className="in__container">
-                      <label>Your Phone </label>
+                      <label>Su telefono</label>
                       <input
                         type="number"
-                        placeholder="Phone No"
+                        placeholder="Ingresa su numero de telefono"
                         name="phone"
 
                       />
@@ -70,7 +71,7 @@ const BookingHours = () => {
               </div>
               <div className="me_slot_selection">
                 <div className="bsc_lower_morning_container">
-                  <span>Morning and Evening Slots</span>
+                  <span>Horarios en la mañana y en la tarde</span>
                   <div className="morning_info_container" id="container45">
                     {MorningData.map((data, index) => {
                       return (
@@ -101,7 +102,7 @@ const BookingHours = () => {
                     <div className="submit_slot_btn">
                       <button className="booking_c_btn" id="bcb" type="submit">
                         <span>
-                          Submit
+                          Enviar
                         </span>
                         {/* <Spinner id="sb_loader" style={loader} /> */}
                       </button>

@@ -20,37 +20,37 @@ const Navbar = () => {
           <HashLink to="/#home">
             <img src={logo_img} alt="om dental clinic logo" />
           </HashLink>
-          <h2>Dental Clinic</h2>
+          <h2>Consultorio Dental-OMs</h2>
         </div>
         <div className={isActive ? "active_links" : "links"}>
           <div className="MenuItems">
             <HashLink to="/#home" onClick={closeMobileMenu}>
-              Home
+              Inicio
             </HashLink>
           </div>
           <div className="MenuItems">
             <HashLink to="/#about-doctors" onClick={closeMobileMenu}>
-              About
+              Informacion
             </HashLink>
           </div>
           <div className="MenuItems">
             <HashLink to="/#our-services" onClick={closeMobileMenu}>
-              Treatments
+              Tratamientos
+            </HashLink>
+          </div>
+          <div className="MenuItems" id="Appointment_menu">
+            <HashLink to="/home/dental-clinic/slot" onClick={closeMobileMenu}>
+              Citas
+            </HashLink>
+          </div>
+          <div className="MenuItems">
+            <HashLink to="/#contact-us" onClick={closeMobileMenu}>
+              Contactenos
             </HashLink>
           </div>
           <div className="MenuItems">
             <HashLink to="/home/login" onClick={closeMobileMenu}>
               Login
-            </HashLink>
-          </div>
-          <div className="MenuItems">
-            <HashLink to="/#contact-us" onClick={closeMobileMenu}>
-              Contact
-            </HashLink>
-          </div>
-          <div className="MenuItems" id="Appointment_menu">
-            <HashLink to="/home/dental-clinic/slot" onClick={closeMobileMenu}>
-              Appointment
             </HashLink>
           </div>
         </div>

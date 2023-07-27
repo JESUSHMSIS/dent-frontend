@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Logo from '../assets/logo.png';
 import Cookies from 'universal-cookie';
 import './Login.css';
-
+import Navbar from './Navbar';
 const cookies = new Cookies();
 
 const Login = () => {
@@ -50,6 +50,7 @@ const Login = () => {
 
   return (
     <>
+  <Navbar />
       <div className="login_form_section">
         <div className="form_container_for_login">
           <form

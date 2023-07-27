@@ -4,37 +4,37 @@ const Contact = () => {
   const clinic_data = [
     {
       id: 1,
-      c_day: 'Monday',
+      c_day: 'Lunes',
       c_time: '11:00 AM-9:00 PM',
     },
     {
       id: 2,
-      c_day: 'Tuesday',
+      c_day: 'Martes',
       c_time: '11:00 AM-9:00 PM',
     },
     {
       id: 3,
-      c_day: 'Wednesday',
+      c_day: 'Miercoles',
       c_time: '11:00 AM-9:00 PM',
     },
     {
       id: 4,
-      c_day: 'Thursday',
+      c_day: 'Jueves',
       c_time: '11:00 AM-9:00 PM',
     },
     {
       id: 5,
-      c_day: 'Friday',
+      c_day: 'Viernes',
       c_time: '11:00 AM-9:00 PM',
     },
     {
       id: 6,
-      c_day: 'Saturday',
+      c_day: 'Sabado',
       c_time: '11:00 AM-9:00 PM',
     },
     {
       id: 7,
-      c_day: 'Sunday',
+      c_day: 'Domingo',
       c_time: '5:00 PM-9:00 PM',
     },
   ];
@@ -62,7 +62,7 @@ const Contact = () => {
                 <span>
                   <i className="fa-solid fa-angles-right"></i>
                 </span>
-                OPD Hours
+                Nuestras Horas de Atención
               </h2>
             </div>
             <hr />
@@ -79,11 +79,11 @@ const Contact = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Clinic Direction
+                  Direccion
                 </a>
               </div>
               <div className="call_to_clinic">
-                <a href="tel:+591 67159666">Call Clinic</a>
+                <a href="tel:+591 67159666">Llamenos</a>
               </div>
             </div>
           </div>
@@ -97,9 +97,9 @@ const Contact = () => {
             </span>
             2023
             <a href="/" id="clinic_name">
-              Dental Clinic.
+              Clinica Dental.
             </a>
-            All Rights Reserved
+            Todos los derechos reservados.
           </p>
         </div>
       </div>

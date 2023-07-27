@@ -11,39 +11,39 @@ function LowerFooter() {
       index: 1,
       rp_img: footer_01,
       rp_text:
-        'Tooth problems are nothing less than an emergency no matter how minor or major the problem might be. Dental problems are varied and knowing how to handle them can actually go a long way in preventing long term damage.',
-      rp_btn: 'read more',
+        'Los problemas dentales son una emergencia sin importar cuán menor o mayor sea el problema. Los problemas dentales son variados y saber cómo manejarlos puede ser de gran ayuda para prevenir daños a largo plazo.',
+      rp_btn: 'Leer mas',
     },
     {
       index: 2,
       rp_img: footer_02,
       rp_text:
-        'Although brushing and flossing are two important daily oral hygiene routines for maintaining the health of your teeth and gums, there are a few other simple things you can do to prevent tooth decay.',
-      rp_btn: 'read more',
+        'Aunque cepillarse los dientes y usar hilo dental son dos importantes rutinas diarias de higiene bucal para mantener la salud de los dientes y las encías, hay algunas otras cosas sencillas que puede hacer para prevenir las caries.',
+      rp_btn: 'Leer mas',
     },
   ];
 
   const nav_data = [
-    { index: 1, link_to: '/#home', nav_name: 'Home' },
-    { index: 2, link_to: '/#about-doctors', nav_name: 'About' },
-    { index: 3, link_to: '/#our-services', nav_name: 'Treatments' },
+    { index: 1, link_to: '/#home', nav_name: 'Inicio' },
+    { index: 2, link_to: '/#about-doctors', nav_name: 'Informacion' },
+    { index: 3, link_to: '/#our-services', nav_name: 'Tratamientos' },
     {
       index: 4,
       link_to: '/dental-clinic/appointment',
-      nav_name: 'Appointment',
+      nav_name: 'Agendar Citas',
     },
-    { index: 5, link_to: '/#contact-us', nav_name: 'Contact Us' },
+    { index: 5, link_to: '/#contact-us', nav_name: 'Contactenos' },
   ];
   const contact_data = [
     {
       index: 1,
       title: 'Email:',
-      cu_data: ' jeshuanaco7@gmail.com',
+      cu_data: 'dentalClinic@gmail.com',
     },
     {
       index: 2,
       title: 'Phone:',
-      cu_data: ' 78815708',
+      cu_data: '+591 67159666',
     },
   ];
 
@@ -51,7 +51,7 @@ function LowerFooter() {
     {
       index: 1,
       img: <i className="fa-brands fa-facebook-f"></i>,
-      on_link: '#',
+      on_link: 'https://www.facebook.com/OdontoMedicSpaJC',
     },
     {
       index: 2,
@@ -74,12 +74,12 @@ function LowerFooter() {
       <div className="lower_outer_footer_container">
         <div className="about_us">
           <div className="wrapper_container_ab">
-            <h2>About Us</h2>
+            <h2>Mas Informacion</h2>
             <p data-aos="fade-right">{about_long_des_data.text}</p>
           </div>
         </div>
         <div className="recent_posts">
-          <h2>Recent Post</h2>
+          <h2>Publicacion Reciente</h2>
           {contact_recent_data.map((data, index) => {
             return (
               <div
@@ -99,7 +99,7 @@ function LowerFooter() {
         </div>
         <div className="footer_menu">
           <div className="wrapper_container_fm">
-            <h2>Footer Menu</h2>
+            <h2>Menu</h2>
             <div className="footer_data_menu">
               {nav_data.map((data, index) => {
                 return (
@@ -119,14 +119,14 @@ function LowerFooter() {
         </div>
         <div className="contact_us">
           <div className="wrapper_container_cu">
-            <h2>Contact Us</h2>
+            <h2>Contactenos</h2>
             <div
               className="contact_address"
               data-aos="fade-down"
               data-aos-duration="1000"
             >
               <address>
-                Desconocido
+                Ubicado en el Prado 
               </address>
             </div>
             <div className="contact_data">
