@@ -34,7 +34,7 @@ export const useUserStore = () => {
     const deleteUser = async (id) => {
         try {
             // Intentamos eliminar el usuario usando el ID proporcionado
-            const { data } = await cafeApi.delete(`/user/${id}`);
+            const { data } = await cafeApi.delete(`/user?id=${id}`);
             
             // Si se eliminó correctamente, ejecutamos el siguiente código
             dispatch(setDeleteUser({ id }));
