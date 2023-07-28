@@ -15,7 +15,7 @@ export const useUserStore = () => {
         try {
             const { data } = await cafeApi.post('/user/', info);
             console.log(data.usuarios)
-            dispatch(setAddUser({ user: data.usuarios }));
+            dispatch(setAddUser({ user: data.user }));
             console.log('usuario creado correctamente')
         } catch (error) {
             console.log(error.response.data.errors[0].msg)
@@ -25,7 +25,7 @@ export const useUserStore = () => {
         try {
             const { data } = await cafeApi.put(`/user?id=${info.id}`, info);
             console.log(data)
-            dispatch(setUpdateUser({ user: data.user }));
+            dispatch(setUpdateUser({ user: data.usuario }));
             console.log('usuario actualizado correctamente')
         } catch (error) {
             console.log(error.response.data.errors[0].msg)

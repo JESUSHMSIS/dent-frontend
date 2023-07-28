@@ -7,22 +7,35 @@ import DeleteUser from './DeleteUsers';
 import EditUser from './EditUser'; 
 import { styleModalUpdateAccount } from '../../../../../styles/StyleModals';
 import '../../../../../styles/admin/accounts.css';
-
+import {AccountsHead} from '../accounts/AccountsHead'
 const GetUsers = () => {
   const { getUser,deleteUser } = useUserStore();
   const { users = [] } = useSelector((state) => state.users);
 
-   useEffect(() => {
-    getUser();
-  }, []);
 
   // Estado para controlar la apertura/cierre del modal
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [userIdToDelete, setUserIdToDelete] = useState(null);
   const [isEditModalOpen, setEditModalOpen] = useState(false); // 2. Nuevo estado para controlar la apertura del formulario de edición
   const [editUserId, setEditUserId] = useState(null); // 2. Nuevo estado para almacenar el ID del usuario a editar
+  const [searchUsers, setSearchUsers] = useState(users);
+  useEffect(() => {
+    getUser();
+  }, []);
 
-   // Function to open the delete confirmation modal
+  useEffect(() => {
+    setSearchUsers(users);
+  }, [users]);
+
+  // Fitrando la busqueda del usuario
+  const searchUser = (search)=>{
+    const regex = new RegExp(search, 'i');
+    const filter_accounts = users.filter(
+      (users) => regex.test(users.name)
+    );
+    setSearchUsers(filter_accounts);
+  }
+  // Function to open the delete confirmation modal
    const openDeleteModal = (userId) => {
     setUserIdToDelete(userId);
   };
@@ -57,7 +70,7 @@ const GetUsers = () => {
     <div className="details">
       <div className="recentOrders">
         <div className="cardHeader">
-          <h2>Lista de Usuarios</h2>
+            <AccountsHead searchAccount={searchUser}/>
           <div className='content-create' style={{marginTop:'10px'}}>
             <button className="btn" onClick={openModal}>
             Añadir usuario
@@ -75,8 +88,8 @@ const GetUsers = () => {
             </tr>
           </thead>
           <tbody>
-            {users.length > 0 ? (
-              users.map((user, index) => (
+            {searchUsers.length > 0 ? (
+              searchUsers.map((user, index) => (
                 <tr key={index}>
                   <td>{user.name}</td>
                   <td>{user.lastName}</td>

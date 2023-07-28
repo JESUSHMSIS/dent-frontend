@@ -30,7 +30,7 @@ const EditUser = ({ editUser, onUserUpdated, onCloseForm }) => {
         age: user.age,
         // Otros campos del usuario si los hay
       });
-
+      
       // Notificar al componente GetUsers que el usuario ha sido actualizado
       onUserUpdated(user);
       onCloseForm();
@@ -41,7 +41,7 @@ const EditUser = ({ editUser, onUserUpdated, onCloseForm }) => {
   };
 
   return (
-    <Modal isOpen={true} onRequestClose={onCloseForm} style={{ content: { width: '450px', left: '50%', transform: 'translateX(-50%)', textAlign: 'center' }, overlay: { zIndex: 100000 } }}>
+    <Modal isOpen={true} onRequestClose={onCloseForm} style={{ content: { width: '450px', left: '50%', transform: 'translateX(-50%)', textAlign: 'center' , backgroundColor:'rgba(0, 0, 0, 0.5)'}, overlay: { zIndex: 100000 }  }}>
       <h2 style={{ marginBottom: '20px' }}>Editar Usuario</h2>
       <input
         type="text"
