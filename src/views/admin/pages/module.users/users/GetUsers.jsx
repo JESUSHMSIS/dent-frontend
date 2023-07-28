@@ -6,7 +6,7 @@ import AddUser from './AddUser';
 import DeleteUser from './DeleteUsers';
 import EditUser from './EditUser'; 
 import { styleModalUpdateAccount } from '../../../../../styles/StyleModals';
-import '../../../../../styles/admin/users.css';
+import '../../../../../styles/admin/accounts.css';
 
 const GetUsers = () => {
   const { getUser,deleteUser } = useUserStore();
@@ -64,7 +64,7 @@ const GetUsers = () => {
             </button>
           </div>
         </div>
-      <div className='view-accounts'>
+      {/* <div className='view-accounts'> */}
       <table className='accounts-list'>
           <thead>
             <tr>
@@ -98,7 +98,7 @@ const GetUsers = () => {
             )}
           </tbody>
         </table>
-      </div>
+      {/* </div */}
         
       </div>
 

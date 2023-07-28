@@ -124,11 +124,14 @@
 }
 
 .accounts-list{
+  margin-top: 10px;
   padding-top: 10px;
   width: 100%;
-  /* background-color: #056; */
+  background-color: var(--widget);
   border-radius: 14px;
   text-align: center;
+  color: #fff;
+  overflow: auto;
 }
 
 .button-update,
