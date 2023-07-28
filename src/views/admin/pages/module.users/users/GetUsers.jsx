@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import Modal from 'react-modal';
 import AddUser from './AddUser';
 import DeleteUser from './DeleteUsers';
+import EditUser from './EditUser'; 
 import { styleModalUpdateAccount } from '../../../../../styles/StyleModals';
 import '../../../../../styles/admin/users.css';
 
@@ -18,7 +19,8 @@ const GetUsers = () => {
   // Estado para controlar la apertura/cierre del modal
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [userIdToDelete, setUserIdToDelete] = useState(null);
-
+  const [isEditModalOpen, setEditModalOpen] = useState(false); // 2. Nuevo estado para controlar la apertura del formulario de edición
+  const [editUserId, setEditUserId] = useState(null); // 2. Nuevo estado para almacenar el ID del usuario a editar
 
    // Function to open the delete confirmation modal
    const openDeleteModal = (userId) => {
@@ -37,7 +39,10 @@ const GetUsers = () => {
       closeDeleteModal();
     }
   };
-  
+  const handleEditUser = (id) => {
+    setEditUserId(id);
+    setEditModalOpen(true);
+  };
   // Función para abrir el modal
   const openModal = () => {
     setModalIsOpen(true);
@@ -77,7 +82,7 @@ const GetUsers = () => {
                   <td>{user.lastName}</td>
                   <td>{user.email}</td>
                   <td>
-                    <button className='button-update' style={{marginRight:'15px'}}>
+                    <button className='button-update' style={{marginRight:'15px'}} onClick={() => handleEditUser(user.id)}>
                       <ion-icon name="create-outline"></ion-icon>
                     </button>
                     <button className='button-delete' onClick={() => openDeleteModal(user.id)}>
@@ -129,6 +134,23 @@ const GetUsers = () => {
         {/* Pass handleDeleteUser and closeDeleteModal as props to the DeleteUser component */}
         <DeleteUser onDelete={handleDeleteUser} onCancel={closeDeleteModal} />
       </Modal>
+
+      <Modal
+      isOpen={isEditModalOpen}
+      onRequestClose={() => setEditModalOpen(false)}
+      contentLabel="Editar Usuario"
+      ariaHideApp={false}
+      style={styleModalUpdateAccount}
+    >
+      {/* Solo renderiza EditUser cuando hay un usuario válido para editar */}
+      {editUserId !== null && (
+        <EditUser
+          editUser={users.find((user) => user.id === editUserId)}
+          onUserUpdated={() => { /* Aquí puedes hacer cualquier acción después de actualizar el usuario */ }}
+          onCloseForm={() => setEditModalOpen(false)}
+        />
+      )}
+    </Modal>
     </div>
   );
 };

@@ -23,7 +23,7 @@ export const useUserStore = () => {
     }
     const putUser = async (info) => {
         try {
-            const { data } = await cafeApi.put(`/user/${info.id}`, info);
+            const { data } = await cafeApi.put(`/user?id=${info.id}`, info);
             console.log(data)
             dispatch(setUpdateUser({ user: data.user }));
             console.log('usuario actualizado correctamente')
