@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux';
 import Modal from 'react-modal';
 import AddUser from './AddUser';
 import DeleteUser from './DeleteUsers';
-import { styleModalUpdateAccount } from '../../../../../styles/StyleModals';
 import '../../../../../styles/admin/accounts.css';
 
 const GetUsers = () => {
@@ -106,13 +105,14 @@ const GetUsers = () => {
         style={{
           overlay: {
             zIndex: 9999,
-            backgroundColor: 'rgba(0, 0, 0, 0.5)',
           },
           content: {
             width: '400px',
             margin: 'auto',
             marginTop: '100px',
-            zIndex: 10000,
+            color: '#fff',
+            borderRadius: '20px',
+            backgroundColor: 'rgb(0, 0, 0)',
           },
         }}
       >
@@ -124,7 +124,6 @@ const GetUsers = () => {
         onRequestClose={closeDeleteModal}
         contentLabel="Confirmar Eliminación de Usuario"
         ariaHideApp={false}
-        style={styleModalUpdateAccount}
       >
         {/* Pass handleDeleteUser and closeDeleteModal as props to the DeleteUser component */}
         <DeleteUser onDelete={handleDeleteUser} onCancel={closeDeleteModal} />

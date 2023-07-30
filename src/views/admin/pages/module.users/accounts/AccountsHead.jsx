@@ -1,32 +1,94 @@
-import React, {useState} from 'react';
-// import Modal from 'react-modal';
+import React, {useState, useEffect} from 'react';
+
+import { useTypeAccountStore, useRoleStore } from '../../../../../hooks';
+import { useSelector } from 'react-redux';
+
+import { ModalCreateAccount } from './modals.create/ModalCreateAccount';
+
+export const AccountsHead = ({searchAccount}) => {
+
+  /* ------------------  Functions Modal Init ---------------  */
+
+  // Modal Create Account
+  const [modalCreateAccount, setModalCreateAccount] = useState(false);
+  const CloseModalCreateAccount = () => { setModalCreateAccount(false) };
 
 
-export const AccountsHead = () => {
+
+  /* ------------------  Funcitons Modal end  ---------------  */
+
+
+  const { getTypeAccounts } = useTypeAccountStore();
+  const { getRoles } = useRoleStore();
+  
+
+  useEffect(() => {
+    getTypeAccounts();
+    getRoles();
+  }, []);
+
+  const { typeAccounts = [] } = useSelector((state) => state.typeAccounts);
+  const { roles = [] } = useSelector((state) => state.roles);
+
+  const typeAccountsEdit = [
+    {
+      id : 1,
+      name : 'Todos'
+    },
+    ...typeAccounts
+  ]
 
   return (
     <div className='header-accounts'>
       <div className='content-search'>
         <div>
-          <input 
+          <input
+            onChange={
+              (e)=>{
+                const typeAccount = e.target.parentNode.parentNode.querySelector('select').value;
+                searchAccount(e.target.value, typeAccount);
+              }
+            }
             type='text'
-            placeholder='Search accounts'
+            placeholder='Buscar cuentas'
+            className='custom-input'
           />
         </div>
         <div>
-          <select name="" id="">
-            <option value="uno">Opcion1</option>
-          </select> 
+          <select className='custom-select'
+            onChange={(e)=>{
+              const account = e.target.parentNode.parentNode.querySelector('input').value;
+              searchAccount(account, e.target.value);
+            }}
+          >
+            {
+              typeAccountsEdit.map(typeAccount => {
+                return (
+                  <option key={typeAccount.id} value={typeAccount.id}>{typeAccount.name}</option>
+                );
+              })
+            }
+          </select>
         </div>
       </div>
       <div className='content-create'>
         <div>
-          <button>New Account</button>
+          <button onClick={()=>{setModalCreateAccount(true)}} className='custom-btn'>
+            Crear cuenta
+          </button>
         </div>
         <div>
-          <button>New type Account</button>
+          <button className='custom-btn'>
+            Crear rol
+          </button>
         </div>
       </div>
+      <ModalCreateAccount 
+        modal={modalCreateAccount}
+        closeModal={CloseModalCreateAccount}
+        typeAccounts={typeAccounts}
+        roles={roles}
+      />
     </div>
   );
 }

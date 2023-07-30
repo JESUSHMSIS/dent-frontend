@@ -13,8 +13,8 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: 70px;
-  border: 2px solid #000;
-  border-radius: 10px;
+  /* border: 2px solid #000; */
+  /* border-radius: 10px; */
 }
 
 :root{
@@ -40,23 +40,26 @@
   flex: 0.7;
 }
 
-.content-search input{
+.custom-input{
   height: 40px;
   background-color: var(--widget-in);
   color: var(--widget-text) !important;
   font-weight: bolder;
 }
 
-.content-search select{
+.custom-select {
+  text-align: center;
   border: none;
   outline: none;
-  border-radius: 4px;
-  min-width: 100px;
-  height: 30px;
-  font-weight: bolder;
-  color: var(--widget-text);
-  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  cursor: pointer;
+  height: 40px;
+  width: 90%;
   background-color: var(--widget-in);
+  color: var(--widget-text) !important;
+  font-weight: bolder;
 }
 
 .content-search div:nth-child(2){
@@ -76,30 +79,15 @@
   justify-content: center;
 }
 
-.content-create button{
-  min-width: 135px;
-  border: none;
-  padding: 7px 0px 7px 0px;
-  border-radius: 5px;
-  background-color: var(--widget);
-  color: var(--btn-text);
-  transition: box-shadow 0.2s;
-  font-weight: bolder;
-}
-
-.content-create button:hover{
-  cursor: pointer;
-  box-shadow: 0px 0px 7px 0.1px #000;
-}
 
 /* ================================= View Accounts  ======================================= */
 
 .view-accounts{
   position: relative;
-  border: 2px solid #000;
+  /* border: 2px solid #000; */
   margin-top: 10px;
   padding: 10px;
-  border-radius: 15px;
+  /* border-radius: 15px; */
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(5, 1fr);
@@ -112,7 +100,6 @@
   color: var(--widget-in);
   position: relative;
   border-radius: 15px;
-  box-shadow: 0px 0px 7px 2px #000;
   border: 3px solid #000;
 }
 
@@ -123,6 +110,9 @@
   padding: 10px;
 }
 
+
+
+/* ================= List Accounts =============== */
 .accounts-list{
   margin-top: 10px;
   padding-top: 10px;
@@ -165,7 +155,7 @@
 }
 
 td {
-  padding: 20px;
+  padding: 15px;
 }
 
 .content-type-account{
