@@ -67,13 +67,14 @@
 
 .content-create{
   grid-column: 4;
+
 }
 
 .content-create div{
   height: 50%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: center;  
 }
 
 .content-create button{
@@ -84,7 +85,7 @@
   background-color: var(--widget);
   color: var(--btn-text);
   transition: box-shadow 0.2s;
-  font-weight: bolder;
+  font-weight: bolder;;
 }
 
 .content-create button:hover{

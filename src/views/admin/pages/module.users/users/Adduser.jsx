@@ -35,9 +35,9 @@ const AddUser = ({ onCloseForm }) => {
   };
 
   return (
-    <div style={{ textAlign: 'center' }}>
+    <div className="container" style={{ textAlign: 'center' , color:''}}>
       <h2 style={{ marginBottom: '20px' }}>Añadir usuarios</h2>
-      <input
+            <input
                 type="text"
                 name="name"
                 value={newUser.name}

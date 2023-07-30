@@ -2,7 +2,7 @@
 // import Modal from 'react-modal';
 
 
-export const AccountsHead = ({searchAccount}) => {
+export const AccountsHead = () => {
 
   return (
     <div className='header-accounts'>
@@ -11,7 +11,6 @@ export const AccountsHead = ({searchAccount}) => {
           <input 
             type='text'
             placeholder='Search accounts'
-            onChange={(e)=>searchAccount(e.target.value)}
           />
         </div>
         <div>

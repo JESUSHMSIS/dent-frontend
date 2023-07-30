@@ -1,16 +1,16 @@
+// Login.jsx
 import { useState } from 'react';
-import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Logo from '../assets/logo.png';
-import Cookies from 'universal-cookie';
 import './Login.css';
 import Navbar from './Navbar';
-const cookies = new Cookies();
+import { useAuthStore } from '../hooks/useAuthStore'; // Importamos el hook useAuthStore
 
 const Login = () => {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
+  const { startLogin } = useAuthStore(); // Usamos el hook useAuthStore
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -22,22 +22,11 @@ const Login = () => {
     }
 
     try {
-      const response = await axios.post(
-        'http://24.199.82.224:8080/api/auth',
-        {
-          userName,
-          password
-        },
-        {
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        }
-      );
-
-      // Manejar la respuesta del servidor según tus necesidades
-      console.log(response.data);
-      cookies.set('token', response.data.token, { path: '/' });
+      // Usamos la función startLogin del hook useAuthStore para iniciar sesión
+      await startLogin({
+        userName, // Aquí asumimos que el nombre de usuario es el email
+        password,
+      });
 
       // Redirigir al usuario al dashboard
       window.location.href = '/user/admin';
@@ -50,7 +39,7 @@ const Login = () => {
 
   return (
     <>
-  <Navbar />
+      <Navbar />
       <div className="login_form_section">
         <div className="form_container_for_login">
           <form
@@ -61,7 +50,7 @@ const Login = () => {
           >
             <div className="brand">
               <img src={Logo} alt="logo" />
-              <h1>Dental Clinic</h1>
+              <h1>Consultorio Dental</h1>
             </div>
             <input
               type="text"
