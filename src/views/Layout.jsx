@@ -2,7 +2,9 @@
 import Logout from './menu/Logout';
 import {Navigation} from './menu/Navigation';
 import {Search} from './menu/Search';
+import { getEnvVariables } from '../helpers';
 
+const { VITE_API_URL } = getEnvVariables()
 
 export const Layout = ({children}) => {
   
@@ -17,7 +19,7 @@ export const Layout = ({children}) => {
     // { icon: 'help-outline', title: 'Help', path : 'accounts' },
     // { icon: 'settings-outline', title: 'Settings', path : 'accounts' },
     // { icon: 'lock-closed-outline', title: 'Password', path : 'accounts' },
-    { icon: 'log-out-outline', title: 'Sign Out', path : 'http://localhost:8080/home/login' },
+    { icon: 'log-out-outline', title: 'Sign Out', path : `${VITE_API_URL}/home/login` },
   ];
 
   return (
