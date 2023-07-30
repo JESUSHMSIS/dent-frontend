@@ -1,7 +1,6 @@
 
 import { Layout } from '../views/Layout';
 import { Route, Routes} from "react-router-dom";
-
 import "../styles/Dashboard.css";
 
 

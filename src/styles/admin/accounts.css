@@ -70,13 +70,14 @@
 
 .content-create{
   grid-column: 4;
+
 }
 
 .content-create div{
   height: 50%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: center;  
 }
 
 

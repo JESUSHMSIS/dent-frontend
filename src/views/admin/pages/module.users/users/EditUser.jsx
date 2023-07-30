@@ -1,14 +1,12 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
-import Cookies from 'universal-cookie';
+import { useUserStore } from '../../../../../hooks';
 import Modal from 'react-modal';
-import "../../../../../styles/Dashboard.css"
-
-
-const cookies = new Cookies();
+import '../../../../../styles/Dashboard.css';
 
 const EditUser = ({ editUser, onUserUpdated, onCloseForm }) => {
+  const { putUser } = useUserStore(); // Obtenemos la función putUser del custom hook useUserStore
+
   const [user, setUser] = useState(editUser);
 
   const handleInputChange = (e) => {
@@ -19,29 +17,32 @@ const EditUser = ({ editUser, onUserUpdated, onCloseForm }) => {
     }));
   };
 
-  const handleUpdateUser = () => {
-    axios
-      .put(`http://24.199.82.224/:8080/api/user?id=${user.id}`, user, {
-        headers: {
-          Authorization: `Bearer ${cookies.get('token')}`,
-        },
-      })
-      .then((response) => {
-        if (response.data.ok) {
-          onUserUpdated(user); // Notificar al componente GetUsers que el usuario ha sido actualizado
-          onCloseForm();
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-        alert('Hubo un error al actualizar el usuario. Por favor, inténtelo de nuevo más tarde.');
+  const handleUpdateUser = async () => {
+    try {
+      // Llamada a la función putUser del custom hook para actualizar el usuario
+      await putUser({
+        id: user.id, // Pasa el ID del usuario a actualizar
+        name: user.name,
+        lastName: user.lastName,
+        email: user.email,
+        phoneNumber: user.phoneNumber,
+        CI: user.CI,
+        age: user.age,
+        // Otros campos del usuario si los hay
       });
+      
+      // Notificar al componente GetUsers que el usuario ha sido actualizado
+      onUserUpdated(user);
+      onCloseForm();
+    } catch (error) {
+      console.error(error);
+      alert('Hubo un error al actualizar el usuario. Por favor, inténtelo de nuevo más tarde.');
+    }
   };
 
   return (
-    <Modal isOpen={true} onRequestClose={onCloseForm} style={{content:{width:'450px' ,left:'50%' ,transform:'translateX(-50%)' , textAlign:'center'},
-                  overlay: {zIndex: 100000}}}>
-      <h2 style={{marginBottom:'20px'}}>Editar Usuario</h2>
+    <Modal isOpen={true} onRequestClose={onCloseForm} style={{ content: { width: '450px', left: '50%', transform: 'translateX(-50%)', textAlign: 'center' , backgroundColor:'rgba(0, 0, 0, 0.5)'}, overlay: { zIndex: 100000 }  }}>
+      <h2 style={{ marginBottom: '20px' }}>Editar Usuario</h2>
       <input
         type="text"
         name="name"
@@ -84,9 +85,9 @@ const EditUser = ({ editUser, onUserUpdated, onCloseForm }) => {
         onChange={handleInputChange}
         placeholder="Edad"
       />
-      <button onClick={handleUpdateUser} style={{marginTop:'20px',padding:'10px 25px',backgroundColor:'#999', cursor:'pointer',fontSize:'15px'}}>Guardar</button>
-      <button onClick={onCloseForm} style={{ position: 'absolute', top: '10px', right: '10px', background: 'transparent', border: 'none', cursor: 'pointer' , fontSize:'40px'}}>
-        <ion-icon name="close-outline" ></ion-icon>     
+      <button onClick={handleUpdateUser} style={{ marginTop: '20px', padding: '10px 25px', backgroundColor: '#999', cursor: 'pointer', fontSize: '15px' }}>Guardar</button>
+      <button onClick={onCloseForm} style={{ position: 'absolute', top: '10px', right: '10px', background: 'transparent', border: 'none', cursor: 'pointer', fontSize: '40px' }}>
+        <ion-icon name="close-outline" ></ion-icon>
       </button>
     </Modal>
   );

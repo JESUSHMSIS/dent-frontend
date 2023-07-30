@@ -1,4 +1,5 @@
 
+import Logout from './menu/Logout';
 import {Navigation} from './menu/Navigation';
 import {Search} from './menu/Search';
 
@@ -16,15 +17,18 @@ export const Layout = ({children}) => {
     // { icon: 'help-outline', title: 'Help', path : 'accounts' },
     // { icon: 'settings-outline', title: 'Settings', path : 'accounts' },
     // { icon: 'lock-closed-outline', title: 'Password', path : 'accounts' },
-    // { icon: 'log-out-outline', title: 'Sign Out', path : 'otro' },
+    { icon: 'log-out-outline', title: 'Sign Out', path : 'http://localhost:8080/home/login' },
   ];
 
   return (
     <div className={`container${isActive ? ' active' : ''}`}>
-      <Navigation menuItems={menuItems} />
+      <Navigation menuItems={menuItems}  >
+      </Navigation>         
       <Search>
         {children}
+        
       </Search>
+  
     </div>
   );
 };
