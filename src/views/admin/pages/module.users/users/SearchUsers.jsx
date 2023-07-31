@@ -23,19 +23,20 @@ const SearchUsers = ({searchAccount}) => {
         <div>
           <input 
             type='text'
+            className="custom-input"
             placeholder='Search accounts'
             onChange={(e)=>searchAccount(e.target.value)}
           />
         </div>
         <div>
-          <select name="" id="">
+          <select name="" id="" className="custom-select">
             <option value="uno">Opcion1</option>
           </select> 
         </div>
       </div>
       <div className='content-create'>
         <div>
-          <button className="btn" onClick={openModal} style={{marginTop:'40px'}}>
+          <button className="custom-btn" onClick={openModal} style={{marginTop:'40px'}}>
             Añadir usuario
             </button>
         </div>

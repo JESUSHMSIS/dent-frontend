@@ -5,8 +5,12 @@ import Modal from 'react-modal';
 // import AddUser from './AddUser';
 import DeleteUser from './DeleteUsers';
 import EditUser from './EditUser'; 
-import { styleModalUpdateAccount } from '../../../../../styles/StyleModals';
+import { styleModalPrefab } from '../../../../../styles/modals';
 import '../../../../../styles/admin/accounts.css';
+
+import '../../../../../styles/buttons.css';
+import '../../../../../styles/inputs.css';
+
 import SearchUsers from './SearchUsers';
 const GetUsers = () => {
   const { getUser,deleteUser } = useUserStore();
@@ -110,7 +114,6 @@ const GetUsers = () => {
         onRequestClose={closeDeleteModal}
         contentLabel="Confirmar Eliminación de Usuario"
         ariaHideApp={false}
-        style={styleModalUpdateAccount}
       >
         {/* Pass handleDeleteUser and closeDeleteModal as props to the DeleteUser component */}
         <DeleteUser onDelete={handleDeleteUser} onCancel={closeDeleteModal} />
@@ -121,7 +124,7 @@ const GetUsers = () => {
       onRequestClose={() => setEditModalOpen(false)}
       contentLabel="Editar Usuario"
       ariaHideApp={false}
-      style={styleModalUpdateAccount}
+      style={styleModalPrefab}
     >
       {/* Solo renderiza EditUser cuando hay un usuario válido para editar */}
       {editUserId !== null && (

@@ -9,10 +9,14 @@ export const accountSlice = createSlice({
     //accounts
     setAccounts: (state, action) => {
       state.accounts = action.payload.accounts;
-    }
+    },
+    setAddAccount: (state, action) => {
+      state.accounts = [...state.accounts, action.payload.account];
+    },
   }
 });
 
 export const { 
-  setAccounts 
+  setAccounts,
+  setAddAccount
 } = accountSlice.actions;

@@ -25,12 +25,7 @@ export const Navigation = ({menuItems})=>{
             >
               {/* Usar link en ves de a */}
               
-              <Link to={item.path} onClick={(e)=>{
-                if(item.title=='Sign Out'){
-                  e.preventDefault();
-                  startLogout();
-                }
-              }}>
+              <Link to={item.path}>
                 <span className="icon">
                   <ion-icon name={item.icon}></ion-icon>
                 </span>

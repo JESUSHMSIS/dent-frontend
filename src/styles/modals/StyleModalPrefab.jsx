@@ -1,6 +1,6 @@
 
 
-export const styleModalUpdateAccount = {
+export const styleModalPrefab = {
 
   overlay : {
     zIndex : '10000'
@@ -8,9 +8,8 @@ export const styleModalUpdateAccount = {
 
   content: {
     borderRadius: '40px',
-    width : '60%',
     margin : 'auto',
-    backgroundColor : '#045',
+    backgroundColor : '#023',
     border : 'none',
     boxShadow : '3px 3px 100px 4px #034'
   }

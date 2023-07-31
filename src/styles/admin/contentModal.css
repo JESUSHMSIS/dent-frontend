@@ -1,0 +1,104 @@
+
+.content-create-account{
+  color: #fff;
+  font-weight: bolder;
+  /* background-color: #400; */
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: 1fr;
+  gap: 10px;
+  height: 100%;
+}
+
+.data-new-account{
+  grid-column: 1 / span 3;
+  /* background-color: #009; */
+  overflow-y: auto !important;
+  position: relative;
+  scroll-behavior: unset;
+}
+.data-new-account div{
+  margin-top: 20px;
+  /* background-color: #400; */
+  text-align: center;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+.data-new-account h4{
+  margin-bottom: 12px;
+}
+
+.content-users-selected{
+  grid-column: 4 / span 5;
+  overflow: auto;
+  position: relative;
+  border-radius: 20px;
+  border: 1px solid #fff;
+}
+
+.content-users-selected table{
+  width: 100%;
+  text-align: center;
+}
+
+.content-btn-create{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  grid-column: 1 / span 5;
+}
+
+.content-btn-create button{
+  margin-left: 70px;
+}
+
+@media (max-width: 800px){
+  .content-create-account{
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, 1fr);
+  }
+  
+  .data-new-account{
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .content-users-selected{
+    grid-column: 1;
+    grid-row: 2;
+  }
+  .data-new-account div{
+    padding-left: 100px;
+    padding-right: 100px;
+  }
+  .content-btn-create{
+    grid-column: 1 ;
+  }
+  .content-btn-create button{
+    margin-left: 0px;
+  }
+}
+
+@media (max-width: 700px){
+  .data-new-account div{
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+@media (max-width: 379px){
+  .content-btn-create button:first-child {
+    margin-bottom: 10px;
+  }
+}
+
+.custom-toast-container .Toastify__toast{
+  background-color: #012;
+  font-weight: bolder;
+  color: #fff;
+  border-radius: 5px;
+}
+
+.custom-toast-container button{
+  display: none;
+}
