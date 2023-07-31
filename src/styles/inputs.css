@@ -10,3 +10,10 @@
 .custom-checkbox:checked {
   background-color: #2196F3;
 }
+
+.custom-input{
+  height: 40px;
+  background-color: var(--widget-in);
+  color: var(--widget-text) !important;
+  font-weight: bolder;
+}

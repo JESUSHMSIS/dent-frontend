@@ -2,7 +2,6 @@
 
 .content-accounts{
   padding: 7px;
-  /* background-color: #040; */
 }
 
 /* ==============================   Header Accounts ================================= */
@@ -28,7 +27,7 @@
   grid-column: 1 / span 3;
   display: flex;
   justify-content: space-around;
-  flex-wrap: wrap;
+  flex-wrap: wrap-reverse;
   align-items: center;
   background-color: var(--widget);
   padding-left: 20px;
@@ -38,13 +37,6 @@
 
 .content-search div:first-child{
   flex: 0.7;
-}
-
-.custom-input{
-  height: 40px;
-  background-color: var(--widget-in);
-  color: var(--widget-text) !important;
-  font-weight: bolder;
 }
 
 .custom-select {
@@ -70,14 +62,14 @@
 
 .content-create{
   grid-column: 4;
-
 }
 
 .content-create div{
   height: 50%;
   display: flex;
+  background-color: #400;
   align-items: center;
-  justify-content: center;  
+  justify-content: space-around;
 }
 
 
@@ -193,7 +185,14 @@ td {
 
 @media (max-width: 600px) {
 
+  .content-accounts{
+    padding: 0px;
+  }
+  .details{
+    padding: 10px;
+  }
   .view-accounts{
+    margin-top: 0px;
     overflow: auto;
     height: 65vh;
     grid-template-rows: 300px 170px 170px;
@@ -216,30 +215,45 @@ td {
 
   .header-accounts{
     grid-template-columns: repeat(1, 1fr);
-    grid-template-rows: repeat(2, 70px);
+    grid-template-rows: 35px 100px;
   }
 
   .content-search{
-    grid-row: 1;
+    grid-row: 2;
     grid-column: 1;
   }
   .content-create{
-    grid-row: 2;
+    grid-row: 1;
     grid-column: 1;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
   }
 }
 
 @media (max-width: 478px){
+
   .view-accounts{
-    height: 60vh;
+    height: 70vh;
   }
   .content-search{
     padding-left: 0px;
   }
   .header-accounts{
-    grid-template-rows: 100px 70px;
+    grid-template-rows: 30px 100px;
   }
   .content-search div{
     min-width: 200px;
   }
 }
+
+@media (max-width: 435px){
+  .details{
+    padding-top: 15px;
+  }
+  .toggle{
+    font-size: 25px;
+  }
+}
+
+
