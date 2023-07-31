@@ -41,7 +41,7 @@ const EditUser = ({ editUser, onUserUpdated, onCloseForm }) => {
   };
 
   return (
-    <Modal isOpen={true} onRequestClose={onCloseForm} style={{ content: { width: '450px', left: '50%', transform: 'translateX(-50%)', textAlign: 'center' , backgroundColor:'rgba(0, 0, 0, 0.5)'}, overlay: { zIndex: 100000 }  }}>
+    <Modal isOpen={true} onRequestClose={onCloseForm} style={{ content: { width: '450px', left: '50%', transform: 'translateX(-50%)', textAlign: 'center'}, overlay: { zIndex: 100000 }  }}>
       <h2 style={{ marginBottom: '20px' }}>Editar Usuario</h2>
       <input
         type="text"
@@ -49,6 +49,7 @@ const EditUser = ({ editUser, onUserUpdated, onCloseForm }) => {
         value={user.name}
         onChange={handleInputChange}
         placeholder="Ingresa tu nombre"
+        style={{color:'#000'}}
       />
       <input
         type="text"
@@ -56,6 +57,7 @@ const EditUser = ({ editUser, onUserUpdated, onCloseForm }) => {
         value={user.lastName}
         onChange={handleInputChange}
         placeholder="Apellido"
+        style={{color:'#000'}}
       />
       <input
         type="text"
@@ -63,6 +65,7 @@ const EditUser = ({ editUser, onUserUpdated, onCloseForm }) => {
         value={user.email}
         onChange={handleInputChange}
         placeholder="Email"
+        style={{color:'#000'}}
       />
       <input
         type="text"
@@ -70,6 +73,7 @@ const EditUser = ({ editUser, onUserUpdated, onCloseForm }) => {
         value={user.phoneNumber}
         onChange={handleInputChange}
         placeholder="Número de teléfono"
+        style={{color:'#000'}}
       />
       <input
         type="text"
@@ -77,6 +81,7 @@ const EditUser = ({ editUser, onUserUpdated, onCloseForm }) => {
         value={user.CI}
         onChange={handleInputChange}
         placeholder="Cédula de identidad"
+        style={{color:'#000'}}
       />
       <input
         type="text"
@@ -84,6 +89,7 @@ const EditUser = ({ editUser, onUserUpdated, onCloseForm }) => {
         value={user.age}
         onChange={handleInputChange}
         placeholder="Edad"
+        style={{color:'#000'}}
       />
       <button onClick={handleUpdateUser} style={{ marginTop: '20px', padding: '10px 25px', backgroundColor: '#999', cursor: 'pointer', fontSize: '15px' }}>Guardar</button>
       <button onClick={onCloseForm} style={{ position: 'absolute', top: '10px', right: '10px', background: 'transparent', border: 'none', cursor: 'pointer', fontSize: '40px' }}>

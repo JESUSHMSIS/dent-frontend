@@ -1,6 +1,8 @@
-import  { useState } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useUserStore } from '../../../../../hooks';
+import { validateName, validateLastName, validateEmail, validatePhoneNumber, validateCI, validateAge } from '../../../../../helpers/users/addUsers';
+import { toast } from 'react-toastify';
 
 const AddUser = ({ onCloseForm }) => {
   const { postUser } = useUserStore();
@@ -22,6 +24,21 @@ const AddUser = ({ onCloseForm }) => {
   };
 
   const handleAddUser = async () => {
+    // Validar campos antes de agregar el usuario
+    const nameError = validateName(newUser.name);
+    const lastNameError = validateLastName(newUser.lastName);
+    const emailError = validateEmail(newUser.email);
+    const phoneNumberError = validatePhoneNumber(newUser.phoneNumber);
+    const ciError = validateCI(newUser.CI);
+    const ageError = validateAge(newUser.age);
+
+    // Si hay errores de validación, mostrar mensajes de error y no agregar el usuario
+    if (nameError || lastNameError || emailError || phoneNumberError || ciError || ageError) {
+      toast.error(nameError || lastNameError || emailError || phoneNumberError || ciError || ageError);
+      return;
+    }
+
+    // Agregar el usuario si las validaciones son exitosas
     await postUser(newUser);
     setNewUser({
       name: '',
@@ -37,48 +54,54 @@ const AddUser = ({ onCloseForm }) => {
   return (
     <div className="container" style={{ textAlign: 'center' , color:''}}>
       <h2 style={{ marginBottom: '20px' }}>Añadir usuarios</h2>
-            <input
-                type="text"
-                name="name"
-                value={newUser.name}
-                onChange={handleInputChange}
-                placeholder="Nombre"
-            />
-            <input
-                type="text"
-                name="lastName"
-                value={newUser.lastName}
-                onChange={handleInputChange}
-                placeholder="Apellido"
-            />
-            <input
-                type="text"
-                name="email"
-                value={newUser.email}
-                onChange={handleInputChange}
-                placeholder="Ingresa tu Email"
-            />
-            <input
-                type="text"
-                name="phoneNumber"
-                value={newUser.phoneNumber}
-                onChange={handleInputChange}
-                placeholder="Número de teléfono"
-            />
-            <input
-                type="text"
-                name="CI"
-                value={newUser.CI}
-                onChange={handleInputChange}
-                placeholder="Cédula de identidad"
-            />
-            <input
-                type="text"
-                name="age"
-                value={newUser.age}
-                onChange={handleInputChange}
-                placeholder="Edad"
-            />
+      <input
+        type="text"
+        name="name"
+        value={newUser.name}
+        onChange={handleInputChange}
+        placeholder="Nombre"
+        style={{color:'#000'}}
+      />
+      <input
+        type="text"
+        name="lastName"
+        value={newUser.lastName}
+        onChange={handleInputChange}
+        placeholder="Apellido"
+        style={{color:'#000'}}
+      />
+      <input
+        type="text"
+        name="email"
+        value={newUser.email}
+        onChange={handleInputChange}
+        placeholder="Ingresa tu Email"
+        style={{color:'#000'}}
+      />
+      <input
+        type="text"
+        name="phoneNumber"
+        value={newUser.phoneNumber}
+        onChange={handleInputChange}
+        placeholder="Número de teléfono"
+        style={{color:'#000'}}
+      />
+      <input
+        type="text"
+        name="CI"
+        value={newUser.CI}
+        onChange={handleInputChange}
+        placeholder="Cédula de identidad"
+        style={{color:'#000'}}
+      />
+      <input
+        type="text"
+        name="age"
+        value={newUser.age}
+        onChange={handleInputChange}
+        placeholder="Edad"
+        style={{color:'#000'}}
+      />
       {/* Agregar los demás campos del formulario */}
       <button
         onClick={handleAddUser}
