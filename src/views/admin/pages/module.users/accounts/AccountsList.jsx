@@ -13,8 +13,8 @@ export const AccountsList = ({accounts}) => {
       <table className='accounts-list'>
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Delete</th>
+            <th>Nombre</th>
+            <th>Eliminar</th>
           </tr>
         </thead>
         <tbody>

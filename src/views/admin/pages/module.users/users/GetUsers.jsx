@@ -114,6 +114,7 @@ const GetUsers = () => {
         onRequestClose={closeDeleteModal}
         contentLabel="Confirmar Eliminación de Usuario"
         ariaHideApp={false}
+        style={styleModalPrefab}
       >
         {/* Pass handleDeleteUser and closeDeleteModal as props to the DeleteUser component */}
         <DeleteUser onDelete={handleDeleteUser} onCancel={closeDeleteModal} />

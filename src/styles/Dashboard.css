@@ -195,6 +195,12 @@ body {
   }
 }
 
+@media (max-width: 600px){
+  .details {
+    padding: 10px;
+  }
+}
+
 @media (max-width: 480px) {
 
   .toggle{
@@ -240,5 +246,15 @@ body {
   .navigation ul li:hover a::after,
   .navigation ul li.hovered a::after {
     display: none;
+  }
+}
+
+@media (max-width: 435px) {
+  .details {
+    padding-top: 15px;
+  }
+
+  .toggle {
+    font-size: 25px;
   }
 }
