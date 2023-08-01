@@ -1,5 +1,6 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import { HomeRouter, AdminRouter } from "./routes";
+import './styles/msg.css';
 
 function App() {
   return (

@@ -91,14 +91,3 @@
     margin-bottom: 10px;
   }
 }
-
-.custom-toast-container .Toastify__toast{
-  background-color: #012;
-  font-weight: bolder;
-  color: #fff;
-  border-radius: 5px;
-}
-
-.custom-toast-container button{
-  display: none;
-}
