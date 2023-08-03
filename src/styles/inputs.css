@@ -23,3 +23,10 @@ label{
   color: var(--widget-text) !important;
   font-weight: bolder;
 }
+
+.custom-input.top10{
+  margin-top: 10px;
+}
+.custom-input.top20{
+  margin-top: 20px;
+}

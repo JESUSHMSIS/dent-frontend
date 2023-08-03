@@ -4,7 +4,20 @@ import { useState } from "react";
 import Modal from "react-modal";
 import AddUser from "./AddUser";
 
+import { styleModalPrefab } from '../../../../../styles/modals';
+import {ToastContainer} from 'react-toastify';
+
+
 const SearchUsers = ({searchAccount}) => {
+  
+  const styleModal = {
+    ...styleModalPrefab,
+    content: {
+      ...styleModalPrefab.content,
+      width: 400,
+      height: 460,
+    }  
+  }
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
@@ -46,21 +59,11 @@ const SearchUsers = ({searchAccount}) => {
         onRequestClose={closeModal}
         contentLabel="Agregar Usuario"
         ariaHideApp={false}
-        style={{
-          overlay: {
-            zIndex: 9999,
-            backgroundColor: 'rgba(0, 0, 0, 0.5)',
-          },
-          content: {
-            width: '400px',
-            margin: 'auto',
-            marginTop: '100px',
-            zIndex: 10000,
-          },
-        }}
+        style={styleModal}
       >
         {/* Pasamos closeModal como prop al componente AddUser */}
         <AddUser onCloseForm={closeModal} />
+        <ToastContainer />
       </Modal>
       </div>
 

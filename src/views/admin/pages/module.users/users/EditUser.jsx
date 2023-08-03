@@ -3,8 +3,19 @@ import PropTypes from 'prop-types';
 import { useUserStore } from '../../../../../hooks';
 import Modal from 'react-modal';
 import '../../../../../styles/Dashboard.css';
+import { styleModalPrefab } from '../../../../../styles/modals';
 
 const EditUser = ({ editUser, onUserUpdated, onCloseForm }) => {
+
+  const styleModal = {
+    ...styleModalPrefab,
+    content: {
+      ...styleModalPrefab.content,
+      width: 400,
+      height: 460,
+    }  
+  }
+
   const { putUser } = useUserStore(); // Obtenemos la función putUser del custom hook useUserStore
 
   const [user, setUser] = useState(editUser);
@@ -41,15 +52,17 @@ const EditUser = ({ editUser, onUserUpdated, onCloseForm }) => {
   };
 
   return (
-    <Modal isOpen={true} onRequestClose={onCloseForm} style={{ content: { width: '450px', left: '50%', transform: 'translateX(-50%)', textAlign: 'center'}, overlay: { zIndex: 100000 }  }}>
-      <h2 style={{ marginBottom: '20px' }}>Editar Usuario</h2>
+    <Modal 
+      isOpen={true} 
+      style={styleModal}>
+      <h2 style={{ marginBottom: '20px', color: '#fff' }}>Editar Usuario</h2>
       <input
         type="text"
         name="name"
         value={user.name}
         onChange={handleInputChange}
         placeholder="Ingresa tu nombre"
-        style={{color:'#000'}}
+        className='custom-input top10'
       />
       <input
         type="text"
@@ -57,7 +70,7 @@ const EditUser = ({ editUser, onUserUpdated, onCloseForm }) => {
         value={user.lastName}
         onChange={handleInputChange}
         placeholder="Apellido"
-        style={{color:'#000'}}
+        className='custom-input top10'
       />
       <input
         type="text"
@@ -65,7 +78,7 @@ const EditUser = ({ editUser, onUserUpdated, onCloseForm }) => {
         value={user.email}
         onChange={handleInputChange}
         placeholder="Email"
-        style={{color:'#000'}}
+        className='custom-input top10'
       />
       <input
         type="text"
@@ -73,7 +86,7 @@ const EditUser = ({ editUser, onUserUpdated, onCloseForm }) => {
         value={user.phoneNumber}
         onChange={handleInputChange}
         placeholder="Número de teléfono"
-        style={{color:'#000'}}
+        className='custom-input top10'
       />
       <input
         type="text"
@@ -81,7 +94,7 @@ const EditUser = ({ editUser, onUserUpdated, onCloseForm }) => {
         value={user.CI}
         onChange={handleInputChange}
         placeholder="Cédula de identidad"
-        style={{color:'#000'}}
+        className='custom-input top10'
       />
       <input
         type="text"
@@ -89,10 +102,18 @@ const EditUser = ({ editUser, onUserUpdated, onCloseForm }) => {
         value={user.age}
         onChange={handleInputChange}
         placeholder="Edad"
-        style={{color:'#000'}}
+        className='custom-input top10'
       />
-      <button onClick={handleUpdateUser} style={{ marginTop: '20px', padding: '10px 25px', backgroundColor: '#999', cursor: 'pointer', fontSize: '15px' }}>Guardar</button>
-      <button onClick={onCloseForm} style={{ position: 'absolute', top: '10px', right: '10px', background: 'transparent', border: 'none', cursor: 'pointer', fontSize: '40px' }}>
+      <div className='content-btn-modal center'>
+        <button 
+          onClick={handleUpdateUser} 
+          style={{ marginTop: '20px', padding: '10px 25px', backgroundColor: '#999', cursor: 'pointer', fontSize: '15px' }}>
+            Guardar
+        </button>
+      </div>
+      <button 
+        onClick={onCloseForm} 
+        style={{ position: 'absolute', top: '10px', right: '10px', background: 'transparent', border: 'none', cursor: 'pointer', fontSize: '40px' }}>
         <ion-icon name="close-outline" ></ion-icon>
       </button>
     </Modal>

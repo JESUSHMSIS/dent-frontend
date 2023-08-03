@@ -17,9 +17,11 @@ const AddUser = ({ onCloseForm }) => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+    // Convertir a número si el nombre del campo es phoneNumber o age
+    const parsedValue = name === 'phoneNumber' || name === 'age' || name === 'CI' ? (parseInt(value) || '') : value;
     setNewUser({
       ...newUser,
-      [name]: value,
+      [name]: parsedValue,
     });
   };
 
@@ -53,14 +55,14 @@ const AddUser = ({ onCloseForm }) => {
 
   return (
     <div className="container" style={{ textAlign: 'center' , color:''}}>
-      <h2 style={{ marginBottom: '20px' }}>Añadir usuarios</h2>
+      <h2 style={{ marginBottom: '20px', color: '#fff' }}>Añadir usuarios</h2>
       <input
         type="text"
         name="name"
         value={newUser.name}
         onChange={handleInputChange}
         placeholder="Nombre"
-        style={{color:'#000'}}
+        className='custom-input top10'
       />
       <input
         type="text"
@@ -68,7 +70,7 @@ const AddUser = ({ onCloseForm }) => {
         value={newUser.lastName}
         onChange={handleInputChange}
         placeholder="Apellido"
-        style={{color:'#000'}}
+        className='custom-input top10'
       />
       <input
         type="text"
@@ -76,7 +78,7 @@ const AddUser = ({ onCloseForm }) => {
         value={newUser.email}
         onChange={handleInputChange}
         placeholder="Ingresa tu Email"
-        style={{color:'#000'}}
+        className='custom-input top10'
       />
       <input
         type="text"
@@ -84,7 +86,7 @@ const AddUser = ({ onCloseForm }) => {
         value={newUser.phoneNumber}
         onChange={handleInputChange}
         placeholder="Número de teléfono"
-        style={{color:'#000'}}
+        className='custom-input top10'
       />
       <input
         type="text"
@@ -92,7 +94,7 @@ const AddUser = ({ onCloseForm }) => {
         value={newUser.CI}
         onChange={handleInputChange}
         placeholder="Cédula de identidad"
-        style={{color:'#000'}}
+        className='custom-input top10'
       />
       <input
         type="number"
@@ -100,33 +102,35 @@ const AddUser = ({ onCloseForm }) => {
         value={newUser.age}
         onChange={handleInputChange}
         placeholder="Edad"
-        style={{color:'#000'}}
+        className='custom-input top10'
       />
       {/* Agregar los demás campos del formulario */}
-      <button
-        onClick={handleAddUser}
-        style={{
-          marginTop: '20px',
-          padding: '10px 25px',
-          backgroundColor: '#999',
-          cursor: 'pointer',
-          fontSize: '15px',
-        }}
-      >
-        Añadir usuario
-      </button>
-      <button
-        onClick={onCloseForm} // Usamos onCloseForm para cerrar el modal
-        style={{
-          marginTop: '20px',
-          padding: '10px 25px',
-          backgroundColor: 'red',
-          cursor: 'pointer',
-          fontSize: '15px',
-        }}
-      >
-        Cancelar
-      </button>
+      <div className='content-btn-modal center'>
+        <button
+          onClick={handleAddUser}
+          style={{
+            marginTop: '20px',
+            padding: '10px 25px',
+            backgroundColor: '#999',
+            cursor: 'pointer',
+            fontSize: '15px',
+          }}
+        >
+          Añadir usuario
+        </button>
+        <button
+          onClick={onCloseForm} // Usamos onCloseForm para cerrar el modal
+          style={{
+            marginTop: '20px',
+            padding: '10px 25px',
+            backgroundColor: 'red',
+            cursor: 'pointer',
+            fontSize: '15px',
+          }}
+        >
+          Cancelar
+        </button>
+      </div>
     </div>
   );
 };

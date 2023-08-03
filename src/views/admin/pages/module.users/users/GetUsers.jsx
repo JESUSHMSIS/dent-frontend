@@ -11,6 +11,29 @@ import '../../../../../styles/admin/accounts.css';
 
 import SearchUsers from './SearchUsers';
 const GetUsers = () => {
+  const styleModalDelete = {
+    overlay: {
+      backgroundColor: 'rgba(0, 0, 0, 0.5)',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      zIndex: '1000',
+    },
+    content: {
+      border: 'none',
+      borderRadius: 20,
+      position: 'relative',
+      top: 'auto',
+      left: 'auto',
+      right: 'auto',
+      bottom: 'auto',
+      maxWidth: '400px', // Ajusta el ancho máximo según tus preferencias
+      margin: '20px', // Ajusta el margen según tus preferencias
+      padding: '20px', // Ajusta el padding según tus preferencias
+      backgroundColor: 'var(--widget)',
+    },
+  };
+
   const { getUser,deleteUser } = useUserStore();
   const { users = [] } = useSelector((state) => state.users);
 
@@ -107,17 +130,18 @@ const GetUsers = () => {
       </div>
 
      
-      <Modal
-        isOpen={!!userIdToDelete} // Show modal only if there is a user ID to delete
-        onRequestClose={closeDeleteModal}
-        contentLabel="Confirmar Eliminación de Usuario"
-        ariaHideApp={false}
-        style={styleModalPrefab}
-      >
-        {/* Pass handleDeleteUser and closeDeleteModal as props to the DeleteUser component */}
-        <DeleteUser onDelete={handleDeleteUser} onCancel={closeDeleteModal} />
-      </Modal>
-
+     {/* Modal de eliminación */}
+     <Modal
+          isOpen={!!userIdToDelete}
+          onRequestClose={closeDeleteModal}
+          contentLabel="Confirmar Eliminación de Usuario"
+          ariaHideApp={false}
+          style={styleModalDelete} // Utiliza el nuevo objeto de estilos
+        >
+          {/* Pass handleDeleteUser and closeDeleteModal as props to the DeleteUser component */}
+          <DeleteUser onDelete={handleDeleteUser} onCancel={closeDeleteModal} />
+        </Modal>
+              
       <Modal
       isOpen={isEditModalOpen}
       onRequestClose={() => setEditModalOpen(false)}
