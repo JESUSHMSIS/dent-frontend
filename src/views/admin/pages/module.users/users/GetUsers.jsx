@@ -142,7 +142,7 @@ const GetUsers = () => {
           {/* Pass handleDeleteUser and closeDeleteModal as props to the DeleteUser component */}
           <DeleteUser onDelete={handleDeleteUser} onCancel={closeDeleteModal} />
         </Modal>
-
+              
       <Modal
       isOpen={isEditModalOpen}
       onRequestClose={() => setEditModalOpen(false)}
