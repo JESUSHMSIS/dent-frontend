@@ -2,11 +2,11 @@ import React from 'react';
 
 const DeleteUser = ({ onDelete, onCancel }) => {
   return (
-    <div>
+    <div style={{color:'#fff', backgroundColor:'0083ff'}}>
       <h3>¿Estás seguro de que deseas eliminar este usuario?</h3>
       <div>
-        <button onClick={onDelete}>Eliminar</button>
-        <button onClick={onCancel}>Cancelar</button>
+        <button onClick={onDelete} style={{backgroundColor:'#ff0000'}}>Eliminar</button>
+        <button onClick={onCancel} style={{backgroungColor:'#00bb2d'}}>Cancelar</button>
       </div>
     </div>
   );

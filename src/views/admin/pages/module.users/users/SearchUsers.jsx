@@ -3,6 +3,8 @@
 import { useState } from "react";
 import Modal from "react-modal";
 import AddUser from "./AddUser";
+import {ToastContainer} from 'react-toastify';
+
 
 const SearchUsers = ({searchAccount}) => {
 
@@ -61,6 +63,7 @@ const SearchUsers = ({searchAccount}) => {
       >
         {/* Pasamos closeModal como prop al componente AddUser */}
         <AddUser onCloseForm={closeModal} />
+        <ToastContainer />
       </Modal>
       </div>
 

@@ -17,9 +17,11 @@ const AddUser = ({ onCloseForm }) => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+    // Convertir a número si el nombre del campo es phoneNumber o age
+    const parsedValue = name === 'phoneNumber' || name === 'age' || name === 'CI' ? (parseInt(value) || '') : value;
     setNewUser({
       ...newUser,
-      [name]: value,
+      [name]: parsedValue,
     });
   };
 
