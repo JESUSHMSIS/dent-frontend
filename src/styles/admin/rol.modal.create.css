@@ -1,0 +1,50 @@
+.content-create-rol{
+  color: var(--fondo);
+  height: 100%;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 80px 1fr 35px;
+}
+
+.content-name-rol{
+  grid-row: 1;
+}
+
+.content-permissions-rol{
+  grid-row: 2;
+  /* background-color: #400; */
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 80px 1fr;
+}
+
+.search-permission{
+  grid-row: 1;
+}
+.content-permissions{
+  grid-row: 2;
+  overflow: auto;
+  position: relative;
+  height: 300px;
+  border-radius: 15px;
+  border: 2px solid #fff;
+}
+
+.content-btn-modal{
+  grid-row: 3;
+  align-items: center;
+}
+.content-btn-modal button{
+  height: 40px;
+}
+
+@media (max-width: 436px){
+  .content-create-rol{
+    grid-template-rows: 100px 1fr 60px;
+  }
+}
+@media (max-width: 410px){
+  .content-create-rol{
+    grid-template-rows: 100px 1fr 100px;
+  }
+}

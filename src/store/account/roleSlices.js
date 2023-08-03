@@ -8,10 +8,14 @@ export const rolSlice = createSlice({
   reducers: {
     setRoles: (state, action) => {
       state.roles = action.payload.roles;
-    }
+    },
+    setAddRol: (state, action) => {
+      state.roles = [...state.roles, action.payload.rol];
+    },
   }
 });
 
 export const { 
-  setRoles
+  setRoles,
+  setAddRol
 } = rolSlice.actions;

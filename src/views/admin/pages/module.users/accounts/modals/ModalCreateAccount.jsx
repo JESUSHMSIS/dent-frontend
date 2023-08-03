@@ -6,31 +6,44 @@ import { useUserStore, useAccountStore } from '../../../../../../hooks';
 import { useSelector } from 'react-redux';
 import { addAccount } from '../../../../../../helpers';
 
-import { styleModalCreateAccount } from '../../../../../../styles/modals/StyleModalCreate';
-import '../../../../../../styles/admin/contentModal.css';
+import { styleModalPrefab } from '../../../../../../styles/modals';
+import '../../../../../../styles/admin/accounts.modal.create.css';
 
 
 export const ModalCreateAccount = ({modal, closeModal, typeAccounts, roles}) => {
 
+  const definedWidth = ()=>{
+    const width = window.innerWidth;
+    if(width > 1100){
+      return width - 350;
+    }
+    else if(width > 800){
+      return width - 200;
+    }
+    else if(width > 500){
+      return width - 100;
+    }
+    else if(width < 500){
+      return width - 70;
+    }
+  }
+
   // Efecto response para el modal
   const [isDisabled, setIsDisabled] = useState(false);
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth - 420);
-  styleModalCreateAccount.content.width = windowWidth;
+  
+  const [windowWidth, setWindowWidth] = useState(definedWidth);
+  const styleModal = {
+    ...styleModalPrefab,
+    content: {
+      ...styleModalPrefab.content,
+      width: windowWidth,
+      height: 'auto',
+    }  
+  }
 
   useEffect(() => {
     const handleResize = () => {
-      const width = window.innerWidth;
-      if(width > 1100){
-        setWindowWidth(width - 350);
-      }
-      else if(width > 800){
-        setWindowWidth(width - 200);
-      }
-      else if(width > 500){
-        setWindowWidth(width - 100);
-      }else if(width < 500){
-        setWindowWidth(width - 70);
-      }
+      setWindowWidth(definedWidth());
     };
 
     window.addEventListener('resize', handleResize);
@@ -68,7 +81,6 @@ export const ModalCreateAccount = ({modal, closeModal, typeAccounts, roles}) => 
   // Agregar usuarios a la nueva cuenta
   const [users_account, setUsersAccount] = useState([]);
   const AddUsers = (user, state) =>{
-    
     if(state){
       setUsersAccount((users_prev)=>[...users_prev, user]);
     }else{
@@ -83,25 +95,19 @@ export const ModalCreateAccount = ({modal, closeModal, typeAccounts, roles}) => 
     userName: '',
     password: ''
   };
+
   // Crear Usuario
   const [data, setData] = useState(struct_data);
   const handleData = (e) => {
     const { name, value } = e.target;
-    console.log(users_account);
     setData((data_pre)=>({
       ...data_pre,
       [name]: value 
     }));
   }
-  useEffect(() => {
-    setData((data_pre) => ({
-      ...data_pre,
-      users: users_account
-    }));
-  }, [users_account]);
-
 
   const handleAddUser = async () =>{
+    data.users = users_account;
     const pre_res = addAccount(data);
     if(pre_res.length > 0){
       pre_res.map(res => {
@@ -134,8 +140,7 @@ export const ModalCreateAccount = ({modal, closeModal, typeAccounts, roles}) => 
   return (
     <Modal
       isOpen={modal}
-      onRequestClose={closeModal}
-      style={styleModalCreateAccount}
+      style={styleModal}
     >
       <div className='content-create-account'>
         <div className='data-new-account'>
@@ -251,10 +256,10 @@ export const ModalCreateAccount = ({modal, closeModal, typeAccounts, roles}) => 
           </table>
         </div>
         
-        <div className='content-btn-create'>
+        <div className='content-btn-modal center'>
           <button 
             disabled={isDisabled}
-            className='create-btn'
+            className='accept-btn'
             onClick={ handleAddUser }>
             Crear Cuenta
           </button>
@@ -262,7 +267,7 @@ export const ModalCreateAccount = ({modal, closeModal, typeAccounts, roles}) => 
             disabled={isDisabled}
             onClick={closeModal} 
             className='cancel-btn'>
-            Cacnelar
+            Cancelar
           </button>
         </div>
       </div>

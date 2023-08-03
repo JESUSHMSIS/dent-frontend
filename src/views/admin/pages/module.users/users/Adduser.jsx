@@ -12,7 +12,7 @@ const AddUser = ({ onCloseForm }) => {
     email: '',
     phoneNumber: '',
     CI: '',
-    age: '',
+    age: 0,
   });
 
   const handleInputChange = (e) => {
@@ -95,7 +95,7 @@ const AddUser = ({ onCloseForm }) => {
         style={{color:'#000'}}
       />
       <input
-        type="text"
+        type="number"
         name="age"
         value={newUser.age}
         onChange={handleInputChange}

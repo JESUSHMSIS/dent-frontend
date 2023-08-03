@@ -73,7 +73,8 @@ export const validateName = (name) => {
   };
   
   export const validateAge = (age) => {
-    if (typeof age !== 'number') {
+    console.log(typeof age);
+    if (typeof age != 'number') {
       return 'La edad debe ser un número';
     }
   

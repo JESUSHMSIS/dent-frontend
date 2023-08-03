@@ -2,11 +2,18 @@
 
 import React, {useState} from 'react';
 
+import { ModalDeleteAccount } from './modals';
 
 
 export const AccountsList = ({accounts}) => {
 
-  const [dataAccount, setDataAccount] = useState([]);
+  
+  // Modal Delete Account
+  const [accountDel, setAccount] = useState('');
+  const [modalDeleteAccount, setModalDeleteAccount] = useState(false);
+  const CloseModalDeleteAccount = () => { setModalDeleteAccount(false) };
+
+  const [dataAccount, setDataAccount] = useState({});
   
   return (
     <div className='content-list-accounts'>
@@ -25,7 +32,13 @@ export const AccountsList = ({accounts}) => {
                 <tr key={account.id}>
                   <td>{account.userName}</td>
                   <td>
-                    <button className='button-delete btn-icon'>
+                    <button 
+                      className='button-delete btn-icon'
+                      onClick={()=>{
+                        setModalDeleteAccount(true);
+                        setAccount(account.id);
+                      }}
+                    >
                       <span className="icon">
                         <ion-icon name='trash-outline'></ion-icon>
                       </span>
@@ -42,6 +55,12 @@ export const AccountsList = ({accounts}) => {
           }
         </tbody>
       </table>
+      
+      <ModalDeleteAccount 
+        account={accountDel}
+        modal={modalDeleteAccount}
+        closeModal={CloseModalDeleteAccount}
+      />
     </div>
   );
 }

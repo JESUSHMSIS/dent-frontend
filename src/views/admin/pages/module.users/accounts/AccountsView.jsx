@@ -2,8 +2,6 @@
 import React, {useState, useEffect} from 'react';
 
 import '../../../../../styles/admin/accounts.css';
-import '../../../../../styles/buttons.css';
-import '../../../../../styles/inputs.css';
 
 import  { AccountsList } from './AccountsList';
 import { AccountsHead } from './AccountsHead';

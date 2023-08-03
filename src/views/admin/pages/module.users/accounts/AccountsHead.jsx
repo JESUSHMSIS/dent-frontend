@@ -3,7 +3,7 @@ import React, {useState, useEffect} from 'react';
 import { useTypeAccountStore, useRoleStore } from '../../../../../hooks';
 import { useSelector } from 'react-redux';
 
-import { ModalCreateAccount } from './modals.create/ModalCreateAccount';
+import { ModalCreateAccount, ModalCreateRol } from './modals';
 
 export const AccountsHead = ({searchAccount}) => {
 
@@ -12,8 +12,9 @@ export const AccountsHead = ({searchAccount}) => {
   // Modal Create Account
   const [modalCreateAccount, setModalCreateAccount] = useState(false);
   const CloseModalCreateAccount = () => { setModalCreateAccount(false) };
-
-
+  // Modal Create Rol
+  const [modalCreateRol, setModalCreateRol] = useState(false);
+  const CloseModalCreateRol = () => { setModalCreateRol(false) };
 
   /* ------------------  Funcitons Modal end  ---------------  */
 
@@ -73,22 +74,36 @@ export const AccountsHead = ({searchAccount}) => {
       </div>
       <div className='content-create'>
         <div>
-          <button onClick={()=>{setModalCreateAccount(true)}} className='custom-btn'>
+          <button 
+            onClick={()=>{setModalCreateAccount(true)}} 
+            className='custom-btn'
+          >
             Crear cuenta
           </button>
         </div>
         <div>
-          <button className='custom-btn'>
+          <button 
+            className='custom-btn'
+            onClick={()=>{setModalCreateRol(true)}}
+          >
             Crear rol
           </button>
         </div>
       </div>
+
       <ModalCreateAccount 
         modal={modalCreateAccount}
         closeModal={CloseModalCreateAccount}
         typeAccounts={typeAccounts}
         roles={roles}
       />
+
+      <ModalCreateRol
+        modal={modalCreateRol}
+        closeModal={CloseModalCreateRol}
+        roles={roles}
+      />
+      
     </div>
   );
 }

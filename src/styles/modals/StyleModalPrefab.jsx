@@ -7,9 +7,10 @@ export const styleModalPrefab = {
   },
 
   content: {
+    width: 'auto',
     borderRadius: '40px',
     margin : 'auto',
-    backgroundColor : '#023',
+    backgroundColor : 'var(--widget)',
     border : 'none',
     boxShadow : '3px 3px 100px 4px #034'
   }

@@ -1,0 +1,19 @@
+.content-delete-account{
+  height: 100%;
+}
+
+.content-delete-inf{
+  height: 80%;
+  display: flex;
+  align-items: center;
+  position: relative;
+  color: var(--fondo);
+}
+
+
+@media(max-width: 440px){
+  .content-delete-inf{
+    height: 70%;
+    color: var(--fondo);
+  }
+}

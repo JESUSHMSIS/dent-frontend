@@ -17,16 +17,24 @@ export const Navigation = ({menuItems, isActive, handleToggleClick})=>{
     <div className={isActive ? 'navigation res': 'navigation'}>
       <ul>
         <li className='li-toggle-nav' onClick={handleToggleClick}>
-          <ion-icon name='return-down-back-outline'/>
+          <Link>
+            <span className="icon">
+            <ion-icon name='return-down-back-outline'/>
+            </span>
+            <span className="title">Cerrar menu</span>
+          </Link>
         </li>
         {
           menuItems.map((item, index) => (
             <li 
+              className={hoveredItem == index ? 'hovered' : ''}
               style={{marginTop:item.title == 'Sign Out' ? '55vh' : ''}}
               key={index}
               onClick={() => {
-                handleToggleClick()
                 handleMouseClick(index)
+                if(window.innerWidth <= 480){
+                  handleToggleClick()
+                }
               }}
             >
               

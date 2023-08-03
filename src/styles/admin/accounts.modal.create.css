@@ -11,8 +11,9 @@
 }
 
 .data-new-account{
+  border: 1px solid #fff;
+  border-radius: 25px;
   grid-column: 1 / span 3;
-  /* background-color: #009; */
   overflow-y: auto !important;
   position: relative;
   scroll-behavior: unset;
@@ -41,15 +42,8 @@
   text-align: center;
 }
 
-.content-btn-create{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+.content-btn-modal{
   grid-column: 1 / span 5;
-}
-
-.content-btn-create button{
-  margin-left: 70px;
 }
 
 @media (max-width: 800px){
@@ -71,10 +65,10 @@
     padding-left: 100px;
     padding-right: 100px;
   }
-  .content-btn-create{
+  .content-btn-modal{
     grid-column: 1 ;
   }
-  .content-btn-create button{
+  .content-btn-modal button{
     margin-left: 0px;
   }
 }
@@ -83,11 +77,5 @@
   .data-new-account div{
     padding-left: 20px;
     padding-right: 20px;
-  }
-}
-
-@media (max-width: 379px){
-  .content-btn-create button:first-child {
-    margin-bottom: 10px;
   }
 }

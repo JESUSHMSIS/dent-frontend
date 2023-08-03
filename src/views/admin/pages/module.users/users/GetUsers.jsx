@@ -6,10 +6,8 @@ import Modal from 'react-modal';
 import DeleteUser from './DeleteUsers';
 import EditUser from './EditUser'; 
 import { styleModalPrefab } from '../../../../../styles/modals';
-import '../../../../../styles/admin/accounts.css';
 
-import '../../../../../styles/buttons.css';
-import '../../../../../styles/inputs.css';
+import '../../../../../styles/admin/accounts.css';
 
 import SearchUsers from './SearchUsers';
 const GetUsers = () => {

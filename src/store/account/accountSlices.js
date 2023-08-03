@@ -13,10 +13,14 @@ export const accountSlice = createSlice({
     setAddAccount: (state, action) => {
       state.accounts = [...state.accounts, action.payload.account];
     },
+    setDeleteAccount: (state, action) => {
+      state.accounts = [...state.accounts.filter(account => account.id != action.payload.id)];
+    }
   }
 });
 
 export const { 
   setAccounts,
-  setAddAccount
+  setAddAccount,
+  setDeleteAccount
 } = accountSlice.actions;

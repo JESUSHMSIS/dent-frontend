@@ -1,7 +1,7 @@
 
 import { useDispatch, useSelector } from 'react-redux';
 import { cafeApi } from "../../services";
-import { setAccounts, setAddAccount } from '../../store';
+import { setAccounts, setAddAccount, setDeleteAccount } from '../../store';
 
 export const useAccountStore = () =>{
   
@@ -10,7 +10,7 @@ export const useAccountStore = () =>{
   const getAccounts = async () => {
     
     const { data } = await cafeApi.get('/account');
-    // console.log(data);
+    console.log(data);
 
     dispatch(setAccounts({accounts : data.accounts}));
   }
@@ -27,8 +27,21 @@ export const useAccountStore = () =>{
     }
   }
 
+  const deleteAccount = async (account) =>{
+    try {
+      const { data } = await cafeApi.delete(`/account?id=${account}`);
+      console.log(data)
+      dispatch(setDeleteAccount({id : account}));
+      return true;
+    } catch (error) {
+      console.log(error.response.data.errors[0].msg)
+      return false;
+    }
+  }
+
   return {
     getAccounts,
-    postAccount
+    postAccount,
+    deleteAccount
   }
 }

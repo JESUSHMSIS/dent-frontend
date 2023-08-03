@@ -24,6 +24,10 @@ button{
   background-color: #016;
   color: var(--btn-text);
 }
+.accept-btn {
+  background-color: #282;
+  color: var(--btn-text);
+}
 .cancel-btn{
   background-color: #920;
   color: var(--btn-text);
@@ -62,4 +66,31 @@ button:hover {
   cursor: pointer;
   box-shadow: 0px 0px 7px 3px #fff;
   background-color: #500;
+}
+
+.content-btn-modal{
+  display: flex;
+}
+
+.content-btn-modal.center{
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.content-btn-modal.end{
+  justify-content: end;
+}
+
+.content-btn-modal.end button{
+  margin-right: 10px;
+}
+@media (max-width: 435px){
+  .content-btn-modal.end {
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  .content-btn-modal.end button{
+    margin-right: 0px;
+    margin-top: 10px;
+  }
 }
