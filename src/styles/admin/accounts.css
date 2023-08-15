@@ -211,4 +211,18 @@ td {
   }
 }
 
+.accounts-list {
+  width: 100%;
+  border-collapse: collapse;
+}
 
+/* Estilos para pantallas de ancho menor a 768px (móvil) */
+@media (max-width: 768px) {
+  .hidden-mobile {
+    display: none;
+  }
+  
+  .table-container {
+    overflow-x: auto;
+  }
+}

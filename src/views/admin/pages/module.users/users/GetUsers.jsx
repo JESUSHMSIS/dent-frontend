@@ -6,7 +6,6 @@ import Modal from 'react-modal';
 import DeleteUser from './DeleteUsers';
 import EditUser from './EditUser'; 
 import { styleModalPrefab } from '../../../../../styles/modals';
-
 import '../../../../../styles/admin/accounts.css';
 
 import SearchUsers from './SearchUsers';
@@ -80,6 +79,7 @@ const GetUsers = () => {
     setEditUserId(id);
     setEditModalOpen(true);
   };
+
   
 
   return (
@@ -91,41 +91,45 @@ const GetUsers = () => {
             
           </div>
         </div>
-      {/* <div className='view-accounts'> */}
+      <div className='content-list-accounts'>
       <table className='accounts-list'>
-          <thead>
-            <tr>
-              <th>Nombre</th>
-              <th>Apellido</th>
-              <th>Email</th>
-              <th>Acción</th>
-            </tr>
-          </thead>
-          <tbody>
-            {searchUsers.length > 0 ? (
-              searchUsers.map((user, index) => (
-                <tr key={index}>
-                  <td>{user.name}</td>
-                  <td>{user.lastName}</td>
-                  <td>{user.email}</td>
-                  <td>
-                    <button className='button-update' style={{marginRight:'15px'}} onClick={() => handleEditUser(user.id)}>
-                      <ion-icon name="create-outline"></ion-icon>
-                    </button>
-                    <button className='button-delete' onClick={() => openDeleteModal(user.id)}>
-                      <ion-icon name="trash-outline"></ion-icon>
-                    </button>
-                  </td>
-                </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan="4">No hay usuarios</td>
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th className='hidden-mobile'>Email</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          {searchUsers.length > 0 ? (
+            searchUsers.map((user, index) => (
+              <tr key={index}>
+                <td>{user.name}</td>
+                <td>{user.lastName}</td>
+                <td className='hidden-mobile'>{user.email}</td>
+                <td>
+                  <button
+                    className='button-update'
+                    style={{ marginRight: '15px' }}
+                    onClick={() => handleEditUser(user.id)}
+                  >
+                    <ion-icon name='create-outline'></ion-icon>
+                  </button>
+                  <button className='button-delete' onClick={() => openDeleteModal(user.id)}>
+                    <ion-icon name='trash-outline'></ion-icon>
+                  </button>
+                </td>
               </tr>
-            )}
-          </tbody>
-        </table>
-      {/* </div */}
+            ))
+          ) : (
+            <tr>
+              <td colSpan='4'>No hay usuarios</td>
+            </tr>
+          )}
+        </tbody>
+      </table>
+      </div>
         
       </div>
 
