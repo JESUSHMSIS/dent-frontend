@@ -7,7 +7,7 @@ import DeleteUser from './DeleteUsers';
 import EditUser from './EditUser'; 
 import { styleModalPrefab } from '../../../../../styles/modals';
 import '../../../../../styles/admin/accounts.css';
-
+import { ToastContainer } from 'react-toastify';
 import SearchUsers from './SearchUsers';
 const GetUsers = () => {
   const styleModalDelete = {
@@ -111,12 +111,14 @@ const GetUsers = () => {
                 <td>
                   <button
                     className='button-update'
-                    style={{ marginRight: '15px' }}
+                    style={{ marginLeft: '50px' }}
                     onClick={() => handleEditUser(user.id)}
                   >
                     <ion-icon name='create-outline'></ion-icon>
                   </button>
-                  <button className='button-delete' onClick={() => openDeleteModal(user.id)}>
+                  <button className='button-delete'
+                  style={{ marginLeft: '50px' }} 
+                  onClick={() => openDeleteModal(user.id)}>
                     <ion-icon name='trash-outline'></ion-icon>
                   </button>
                 </td>
@@ -129,6 +131,7 @@ const GetUsers = () => {
           )}
         </tbody>
       </table>
+
       </div>
         
       </div>
@@ -162,6 +165,7 @@ const GetUsers = () => {
         />
       )}
     </Modal>
+    <ToastContainer className="custom-toast-container"/>
     </div>
   );
 };
